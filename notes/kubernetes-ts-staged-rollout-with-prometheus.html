@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Kubernetes Ts Staged Rollout with Prometheus - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/kubernetes-ts-staged-rollout-with-prometheus.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/kubernetes-ts-staged-rollout-with-prometheus.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/kubernetes-ts-staged-rollout-with-prometheus.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Kubernetes Ts Staged Rollout with Prometheus - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Kubernetes Ts Staged Rollout with Prometheus - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Kubernetes Ts Staged Rollout with Prometheus</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Kubernetes Ts Staged Rollout with Prometheus">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="staged-app-rollout-gated-by-prometheus-checks"><a aria-hidden="true" class="anchor-heading" href="#staged-app-rollout-gated-by-prometheus-checks"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Staged App Rollout Gated by Prometheus Checks</h1>
+<p>Demonstrates how to create a staged rollout (from 3-replica canary -> 10-replica staging), gated by
+checking that the P90 response time reported by Prometheus is less than some amount. We first deploy
+<a href="https://prometheus.io/">Prometheus</a> using a <a href="https://www.helm.sh/">Helm</a> Chart, then deploy a Prometheus-instrumented application
+using two <code>Deployment</code> objects, with a gated check between them.</p>
+<p>The relevant gating code in <code>index.ts</code> looks like this:</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// Canary ring. Replicate instrumented Pod 3 times.</span>
+<span class="token keyword">const</span> canary <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">k8s</span><span class="token punctuation">.</span><span class="token property-access">apps</span><span class="token punctuation">.</span><span class="token property-access">v1beta1</span><span class="token punctuation">.</span><span class="token method function property-access"><span class="token maybe-class-name">Deployment</span></span><span class="token punctuation">(</span>
+    <span class="token string">"canary-example-app"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> spec<span class="token operator">:</span> <span class="token punctuation">{</span> replicas<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> template<span class="token operator">:</span> instrumentedPod <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> dependsOn<span class="token operator">:</span> p8sDeployment <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Staging ring. Replicate instrumented Pod 10 times.</span>
+<span class="token keyword">const</span> staging <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">k8s</span><span class="token punctuation">.</span><span class="token property-access">apps</span><span class="token punctuation">.</span><span class="token property-access">v1beta1</span><span class="token punctuation">.</span><span class="token method function property-access"><span class="token maybe-class-name">Deployment</span></span><span class="token punctuation">(</span><span class="token string">"staging-example-app"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    metadata<span class="token operator">:</span> <span class="token punctuation">{</span>
+        annotations<span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Check P90 latency is &#x3C; 100,000 microseconds. Returns a `Promise&#x3C;string>` with the P90</span>
+            <span class="token comment">// response time. It must resolve correctly before this deployment rolls out. In</span>
+            <span class="token comment">// general any `Promise&#x3C;T>` could go here.</span>
+            <span class="token string">"example.com/p90ResponseTime"</span><span class="token operator">:</span> util<span class="token punctuation">.</span><span class="token method function property-access">checkHttpLatency</span><span class="token punctuation">(</span>canary<span class="token punctuation">,</span> containerName<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                durationSeconds<span class="token operator">:</span> <span class="token number">60</span><span class="token punctuation">,</span>
+                quantile<span class="token operator">:</span> <span class="token number">0.9</span><span class="token punctuation">,</span>
+                thresholdMicroseconds<span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+                prometheusEndpoint<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">localhost:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>localPort<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+                forwarderHandle<span class="token operator">:</span> forwarderHandle
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    spec<span class="token operator">:</span> <span class="token punctuation">{</span> replicas<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> template<span class="token operator">:</span> instrumentedPod <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>When the program is run, it will look something like the following (although this is sped up by 8x).
+The majority of the time is taken up by deploying Prometheus. Towards the end, at the bottom, you
+can see <code>canary-example-app</code> and <code>canary-staging-app</code> created.</p>
+<p><img src="images/gatedDeployment.gif" alt="gatedDeployment" title="Deployment gated by Prometheus check"></p>
+<h2 id="running-the-app"><a aria-hidden="true" class="anchor-heading" href="#running-the-app"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Running the App</h2>
+<ol>
+<li>
+<p>If you haven't already, follow the steps in <a href="https://www.pulumi.com/docs/get-started/install/">Pulumi Installation and Setup</a> and
+<a href="https://www.pulumi.com/docs/intro/cloud-providers/kubernetes/setup/">Configuring Pulumi Kubernetes</a> to get setup with Pulumi and Kubernetes.</p>
+</li>
+<li>
+<p>Now, install dependencies:</p>
+<pre class="language-sh"><code class="language-sh">npm install
+</code></pre>
+</li>
+<li>
+<p>Create a new stack:</p>
+<pre class="language-sh"><code class="language-sh">$ pulumi stack init
+Enter a stack name: staged-rollout
+</code></pre>
+</li>
+<li>
+<p><strong>IMPORTANT NOTE:</strong> The code in <code>index.ts</code> is meant to be run out-of-cluster (<em>e.g.</em>, on your
+local machine). It will thus call <code>kubectl port-forward</code> on your behalf so that the Prometheus
+service is forwarded to your local machine, which allows this program to poll for metrics. <strong>If
+you are running Pulumi in-cluster, you can comment out this part of the example.</strong></p>
+</li>
+<li>
+<p>Perform the deployment:</p>
+<pre class="language-sh"><code class="language-sh">$ pulumi up
+Updating stack 'staged-rollout'
+Performing changes:
+
+     Type                           Name                 Status      Info
+ +   pulumi:pulumi:Stack                                            prometheus-staged-rollout
+ +   ├─ kubernetes:helm.sh:Chart                                    p8s                                created
+ +   │  ├─ kubernetes:core:ServiceAccount                           p8s-prometheus-alertmanager        created
+ +   │  ├─ kubernetes:core:ServiceAccount                           p8s-prometheus-pushgateway         created
+ +   │  ├─ kubernetes:core:ServiceAccount                           p8s-prometheus-kube-state-metrics  created
+ +   │  ├─ kubernetes:core:ServiceAccount                           p8s-prometheus-server              created
+ +   │  ├─ kubernetes:core:ServiceAccount                           p8s-prometheus-node-exporter       created
+ +   │  ├─ kubernetes:core:ConfigMap                                p8s-prometheus-alertmanager        created
+ +   │  ├─ kubernetes:rbac.authorization.k8s.io:ClusterRoleBinding  p8s-prometheus-server              created
+ +   │  ├─ kubernetes:core:PersistentVolumeClaim                    p8s-prometheus-server              created
+ +   │  ├─ kubernetes:rbac.authorization.k8s.io:ClusterRoleBinding  p8s-prometheus-kube-state-metrics  created
+ +   │  ├─ kubernetes:core:ConfigMap                                p8s-prometheus-server              created
+ +   │  ├─ kubernetes:core:PersistentVolumeClaim                    p8s-prometheus-alertmanager        created
+ +   │  ├─ kubernetes:core:Service                                  p8s-prometheus-alertmanager        created
+ +   │  ├─ kubernetes:core:Service                                  p8s-prometheus-kube-state-metrics  created
+ +   │  ├─ kubernetes:core:Service                                  p8s-prometheus-pushgateway         created
+ +   │  ├─ kubernetes:core:Service                                  p8s-prometheus-node-exporter       created
+ +   │  ├─ kubernetes:extensions:Deployment                         p8s-prometheus-kube-state-metrics  created
+ +   │  ├─ kubernetes:core:Service                                  p8s-prometheus-server              created
+ +   │  ├─ kubernetes:extensions:Deployment                         p8s-prometheus-pushgateway         created
+ +   │  ├─ kubernetes:rbac.authorization.k8s.io:ClusterRole         p8s-prometheus-kube-state-metrics  created
+ +   │  ├─ kubernetes:extensions:DaemonSet                          p8s-prometheus-node-exporter       created
+ +   │  ├─ kubernetes:extensions:Deployment                         p8s-prometheus-alertmanager        created
+ +   │  ├─ kubernetes:extensions:Deployment                         p8s-prometheus-server              created
+ +   │  └─ kubernetes:rbac.authorization.k8s.io:ClusterRole         p8s-prometheus-server              created
+ +   ├─ kubernetes:apps:Deployment                                  canary-example-app                 created
+ +   └─ kubernetes:apps:Deployment                                  staging-example-app                created
+
+Diagnostics:
+  pulumi:pulumi:Stack: prometheus-test-p8s
+    info: Checking HTTP metrics
+
+    ---outputs:---
+  + p90ResponseTime: "8221.236"
+
+info: 2 changes performed:
+    + 2 resources created
+      26 resources unchanged
+Update duration: 7.362744393s
+
+Permalink: https://app.pulumi.com/hausdorff/test-p8s/updates/1
+</code></pre>
+<p>One useful sidenote, we can see here in the <code>---outputs:---</code> section that the <code>p90ResponseTime</code>
+that was computed by the promise is <code>export</code>ed, which causes Pulumi to report its value just
+before it terminates.</p>
+</li>
+</ol>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/index.ts">index.ts</a></li>
+<li><a href="/assets/package.json">package.json</a></li>
+<li><a href="/assets/tsconfig.json">tsconfig.json</a></li>
+<li><a href="/assets/util.ts">util.ts</a></li>
+</ul>
+<hr>
+<h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
+<ol>
+<li><a href="https://pulumi.dendron.so/notes/kubernetes-ts-staged-rollout-with-prometheus.images.html">Images</a></li>
+</ol><span id="navId" data="kubernetes-ts-staged-rollout-with-prometheus"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/kubernetes-ts-staged-rollout-with-prometheus/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Vpc Crosswalk Ts - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/aws-ts-vpc-with-ecs-fargate-py.vpc-crosswalk-ts.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/aws-ts-vpc-with-ecs-fargate-py.vpc-crosswalk-ts.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/aws-ts-vpc-with-ecs-fargate-py.vpc-crosswalk-ts.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Vpc Crosswalk Ts - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Vpc Crosswalk Ts - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so/notes/dc661e33-77aa-4094-9827-9d1443130193.html">Aws Ts Vpc with Ecs Fargate Py</a></li><li class="breadcrumb-nav-list-item">Vpc Crosswalk Ts</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Vpc Crosswalk Ts">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="pulumi--a-vpc-on-aws-built-in-typescript"><a aria-hidden="true" class="anchor-heading" href="#pulumi--a-vpc-on-aws-built-in-typescript"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Pulumi:  A VPC on AWS built in Typescript.</h1>
+<h3 id="what-is-this"><a aria-hidden="true" class="anchor-heading" href="#what-is-this"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>What Is This?</h3>
+<p>This example uses <a href="https://www.pulumi.com/docs/guides/crosswalk/aws/#pulumi-crosswalk-for-aws">Pulumi CrossWalk for AWS</a> for deploying your own vpc using crosswalk <a href="https://www.pulumi.com/docs/guides/crosswalk/aws/vpc/">VPC</a>.  The VPC is built in <code>typescript</code></p>
+<h3 id="why-would-you-do-this"><a aria-hidden="true" class="anchor-heading" href="#why-would-you-do-this"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Why would you do this?</h3>
+<p>An example showing that you can easily integrate infrastructure from another Pulumi application written in a different language than the one you are used to.</p>
+<h2 id="prerequisites"><a aria-hidden="true" class="anchor-heading" href="#prerequisites"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Prerequisites</h2>
+<ul>
+<li><a href="https://www.pulumi.com/docs/get-started/install/">Install Pulumi</a></li>
+<li><a href="https://www.pulumi.com/docs/intro/cloud-providers/aws/setup/">Configure Pulumi to Use AWS</a> (if your AWS CLI is configured, no further changes are required)</li>
+</ul>
+<h3 id="where-are-the-settings"><a aria-hidden="true" class="anchor-heading" href="#where-are-the-settings"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Where are the settings?</h3>
+<p> The settings are in <code>Pulumi</code>.stackname<code>.yaml</code>
+You will be creating a new file that holds your configs</p>
+<h3 id="creating-a-new-pulumistacknameyaml"><a aria-hidden="true" class="anchor-heading" href="#creating-a-new-pulumistacknameyaml"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Creating a new <code>Pulumi</code>.stackname<code>.yaml</code></h3>
+<ol>
+<li>
+<p>Initialize a new stack called: <code>vpc-fargate</code> via <a href="https://www.pulumi.com/docs/reference/cli/pulumi_stack_init/">pulumi stack init</a>. </p>
+<pre><code>$ pulumi stack init vpc-fargate-dev
+</code></pre>
+</li>
+<li>
+<p>Now, install dependencies:</p>
+<pre><code>$ npm install
+</code></pre>
+</li>
+<li>
+<p>View the current config settings. This will be empty.</p>
+<pre><code>$ pulumi config
+</code></pre>
+<pre><code>KEY                     VALUE
+</code></pre>
+</li>
+<li>
+<p>Populate the config.</p>
+<p>Here are aws <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">endpoints</a></p>
+<pre><code>$ pulumi config set aws:region us-east-2 # any valid aws region endpoint
+$ pulumi config set vpc_name vpc-fargate-dev
+$ pulumi config set vpc_cidr 10.0.0.0/24
+$ pulumi config set zone_number 3 # number of availability zones
+$ pulumi config set number_of_nat_gateways 3 # number of nat gateways. 1 to N(where N is zone_number). recommended to keep at least 2 for high availability.
+</code></pre>
+</li>
+<li>
+<p>View the current config settings
+<code>$ pulumi config</code></p>
+<pre><code>KEY                     VALUE
+aws:region              us-east-2
+number_of_nat_gateways  3
+vpc_cidr                10.0.0.0/24
+vpc_name                vpc-fargate-dev
+zone_number             3
+</code></pre>
+</li>
+<li>
+<p>Launch
+<code>$ pulumi up</code></p>
+</li>
+<li>
+<p>Expected output:</p>
+</li>
+</ol>
+<pre><code>Previewing update (vpc-fargate-dev)
+
+View Live: https://app.pulumi.com/shaht/crosswalk-vpc/vpc-fargate-dev/previews/0da8c31d-5cb4-4fee-9a3d-69d9d5d21511
+
+     Type                              Name                           Plan
+ +   pulumi:pulumi:Stack               crosswalk-vpc-vpc-fargate-dev  create...
+ +   └─ awsx:x:ec2:Vpc                 vpc-fargate-dev                create
+ +      ├─ awsx:x:ec2:Subnet           vpc-fargate-dev-public-2       create
+ +      │  ├─ aws:ec2:RouteTable       vpc-fargate-dev-public-2       create
+ +      │  └─ aws:ec2:Subnet           vpc-fargate-dev-public-2       create
+ +      ├─ awsx:x:ec2:Subnet           vpc-fargate-dev-private-2      create
+ +      │  ├─ aws:ec2:RouteTable       vpc-fargate-dev-private-2      create
+ +      │  ├─ aws:ec2:RouteTable       vpc-fargate-dev-private-2      create
+ +      │  ├─ aws:ec2:Subnet                 vpc-fargate-dev-private-2      create
+ +      │  └─ aws:ec2:RouteTableAssociation  vpc-fargate-dev-private-2      create
+ +      ├─ awsx:x:ec2:Subnet                 vpc-fargate-dev-public-1       create
+ +      ├─ awsx:x:ec2:Subnet                 vpc-fargate-dev-public-1       create
+ +      │  └─ aws:ec2:RouteTableAssociation  vpc-fargate-dev-public-2       create
+ +      │  ├─ aws:ec2:Subnet                 vpc-fargate-dev-public-1       create
+ +      │  ├─ aws:ec2:Route                  vpc-fargate-dev-public-1-ig    create
+ +      │  └─ aws:ec2:RouteTableAssociation  vpc-fargate-dev-public-1       create
+ +      ├─ awsx:x:ec2:Subnet                 vpc-fargate-dev-private-1      create
+ +      │  ├─ aws:ec2:RouteTable             vpc-fargate-dev-private-1        create
+ +      │  ├─ aws:ec2:RouteTable             vpc-fargate-dev-private-1        create
+ +      │  └─ aws:ec2:Route                  vpc-fargate-dev-private-2-nat-2  create
+ +   pulumi:pulumi:Stack                     crosswalk-vpc-vpc-fargate-dev    create
+ +      │  └─ aws:ec2:Route                  vpc-fargate-dev-private-1-nat-1  create
+ +      ├─ awsx:x:ec2:NatGateway             vpc-fargate-dev-0                create
+ +      │  ├─ aws:ec2:Eip                    vpc-fargate-dev-0                create
+ +      │  └─ aws:ec2:NatGateway             vpc-fargate-dev-0                create
+ +      ├─ awsx:x:ec2:Subnet                 vpc-fargate-dev-public-0         create
+ +      │  ├─ aws:ec2:RouteTable             vpc-fargate-dev-public-0         create
+ +      │  ├─ aws:ec2:Subnet                 vpc-fargate-dev-public-0         create
+ +      │  ├─ aws:ec2:Route                  vpc-fargate-dev-public-0-ig      create
+ +      │  └─ aws:ec2:RouteTableAssociation  vpc-fargate-dev-public-0         create
+ +      ├─ awsx:x:ec2:NatGateway             vpc-fargate-dev-2                create
+ +      │  ├─ aws:ec2:Eip                    vpc-fargate-dev-2                create
+ +      │  └─ aws:ec2:NatGateway             vpc-fargate-dev-2                create
+ +      ├─ awsx:x:ec2:Subnet                 vpc-fargate-dev-private-0        create
+ +      │  ├─ aws:ec2:RouteTable             vpc-fargate-dev-private-0        create
+ +      │  ├─ aws:ec2:Subnet                 vpc-fargate-dev-private-0        create
+ +      │  ├─ aws:ec2:RouteTableAssociation  vpc-fargate-dev-private-0        create
+ +      │  └─ aws:ec2:Route                  vpc-fargate-dev-private-0-nat-0  create
+ +      ├─ awsx:x:ec2:InternetGateway        vpc-fargate-dev                  create
+ +      │  └─ aws:ec2:InternetGateway        vpc-fargate-dev                  create
+ +      ├─ awsx:x:ec2:NatGateway             vpc-fargate-dev-1                create
+ +      │  ├─ aws:ec2:Eip                    vpc-fargate-dev-1                create
+ +      │  └─ aws:ec2:NatGateway             vpc-fargate-dev-1                create
+ +      └─ aws:ec2:Vpc                       vpc-fargate-dev                  create
+
+Resources:
+    + 44 to create
+
+Do you want to perform this update?  [Use arrows to move, enter to select, type to filter]
+> yes
+  no
+  details
+</code></pre>
+<p>You need to select <code>yes</code> to continue.  The url will look similar to the url below and you will need to replace the <code>shaht</code> with your own org, <code>team-qa</code>:<br>
+<a href="https://app.pulumi.com/%60shaht%60/crosswalk-vpc/vpc-fargate-dev/">https://app.pulumi.com/`shaht`/crosswalk-vpc/vpc-fargate-dev/</a></p>
+<ol start="8">
+<li>
+<p>The stack outputs will be used as <a href="https://www.pulumi.com/docs/intro/concepts/organizing-stacks-projects/#inter-stack-dependencies">StackReference</a> for ECS fargate (resides in ecs-fargate-python folder)</p>
+<p><code>$ pulumi stack output</code></p>
+<pre><code>Current stack outputs (8):
+   OUTPUT                              VALUE
+   pulumi_vpc_aws_tags                 {"Name":"vpc-fargate-dev","availability_zones_used":"3","cidr_block":"10.0.0.0/24","cost_center":"1234","crosswalk":"yes","demo":"true","number_of_nat_gateways":"3","pulumi:Configs":"Pulumi.vpc-fargate-dev.yaml","pulumi:Project":"crosswalk-vpc","pulumi:Stack":"vpc-fargate-dev"}
+   pulumi_vpc_az_zones                 3
+   pulumi_vpc_cidr                     10.0.0.0/24
+   pulumi_vpc_id                       vpc-0e1a5b4a8277fb720
+   pulumi_vpc_name                     vpc-fargate-dev
+   pulumi_vpc_private_subnet_ids       ["subnet-0d7d33f32765376aa","subnet-0697aa77c78831c8a","subnet-0e11a5c7b3bfae990"]
+   pulumi_vpc_public_subnet_ids        ["subnet-0f09644bed84984e5","subnet-08f11730467a5a376","subnet-0eff65aac894f1115"]
+   pulumic_vpc_number_of_nat_gateways  3
+</code></pre>
+</li>
+<li>
+<p>The value to use in a <a href="https://www.pulumi.com/docs/intro/concepts/organizing-stacks-projects/#inter-stack-dependencies"><code>StackReference</code></a> can be retrieved from the last line. </p>
+<pre><code>   $ pulumi stack
+</code></pre>
+<pre><code>...
+...
+More information at: https://app.pulumi.com/shaht/crosswalk-vpc/vpc-fargate-dev
+</code></pre>
+<p>Here is what we need from above to launch things in here.  </p>
+<pre><code>   shaht/crosswalk-vpc/vpc-fargate-dev
+</code></pre>
+<p>Note, yours will be something along the lines of:</p>
+<pre><code>   teamqa/crosswalk-vpc/vpc-fargate-dev
+</code></pre>
+</li>
+</ol>
+<ol start="10">
+<li>Cleanup.  Destroy the vpc only if all there are no other resources running in it such as ecs fargate.
+<pre><code>$ pulumi destroy -y
+$ pulumi stack rm vpc-fargate
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/index.ts">index.ts</a></li>
+<li><a href="/assets/package.json">package.json</a></li>
+<li><a href="/assets/tsconfig.json">tsconfig.json</a></li>
+</ul><span id="navId" data="aws-ts-vpc-with-ecs-fargate-py.vpc-crosswalk-ts"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/aws-ts-vpc-with-ecs-fargate-py/vpc-crosswalk-ts/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

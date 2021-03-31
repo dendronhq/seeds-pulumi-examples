@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Gcp Ts Gke Hello World - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/gcp-ts-gke-hello-world.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/gcp-ts-gke-hello-world.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/gcp-ts-gke-hello-world.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Gcp Ts Gke Hello World - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Gcp Ts Gke Hello World - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Gcp Ts Gke Hello World</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Gcp Ts Gke Hello World">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="google-kubernetes-engine-gke-cluster"><a aria-hidden="true" class="anchor-heading" href="#google-kubernetes-engine-gke-cluster"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Google Kubernetes Engine (GKE) Cluster</h1>
+<p>This example deploys an Google Cloud Platform (GCP) <a href="https://cloud.google.com/kubernetes-engine/">Google Kubernetes Engine (GKE)</a> cluster, and deploys a Kubernetes Namespace and Deployment of NGINX</p>
+<h2 id="deploying-the-app"><a aria-hidden="true" class="anchor-heading" href="#deploying-the-app"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Deploying the App</h2>
+<p>To deploy your infrastructure, follow the below steps.</p>
+<h3 id="prerequisites"><a aria-hidden="true" class="anchor-heading" href="#prerequisites"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Prerequisites</h3>
+<ol>
+<li>
+<p><a href="https://www.pulumi.com/docs/get-started/install/">Install Pulumi</a></p>
+</li>
+<li>
+<p><a href="https://nodejs.org/en/download/">Install Node.js</a></p>
+</li>
+<li>
+<p>Install a package manager for Node.js, such as <a href="https://www.npmjs.com/get-npm">npm</a> or <a href="https://yarnpkg.com/en/docs/install">Yarn</a>.</p>
+</li>
+<li>
+<p><a href="https://cloud.google.com/sdk/docs/downloads-interactive">Install Google Cloud SDK (<code>gcloud</code>)</a></p>
+</li>
+<li>
+<p>Configure GCP Auth</p>
+<ul>
+<li>
+<p>Login using <code>gcloud</code></p>
+<pre><code>```bash
+$ gcloud auth login
+$ gcloud config set project &#x3C;YOUR_GCP_PROJECT_HERE>
+$ gcloud auth application-default login
+```
+</code></pre>
+<blockquote>
+<p>Note: This auth mechanism is meant for inner loop developer
+workflows. If you want to run this example in an unattended service
+account setting, such as in CI/CD, please <a href="https://www.pulumi.com/docs/intro/cloud-providers/gcp/setup/">follow instructions to
+configure your service account</a>. The
+service account must have the role <code>Kubernetes Engine Admin</code> / <code>container.admin</code>.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="steps"><a aria-hidden="true" class="anchor-heading" href="#steps"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Steps</h3>
+<p>After cloning this repo, from this working directory, run these commands:</p>
+<ol>
+<li>
+<p>Install the required Node.js packages:</p>
+<p>This installs the dependent packages <a href="https://www.pulumi.com/docs/intro/concepts/how-pulumi-works/">needed</a> for our Pulumi program.</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span>
+</code></pre>
+</li>
+<li>
+<p>Create a new Pulumi stack, which is an isolated deployment target for this example:</p>
+<p>This will initialize the Pulumi program in TypeScript.</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack init
+</code></pre>
+</li>
+<li>
+<p>Set the required GCP configuration variables:</p>
+<p>This sets configuration options and default values for our cluster.</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> gcp:project <span class="token operator">&#x3C;</span>YOUR_GCP_PROJECT_HERE<span class="token operator">></span>
+$ pulumi config <span class="token builtin class-name">set</span> gcp:zone us-west1-a     // any valid GCP Zone here
+</code></pre>
+</li>
+<li>
+<p>Stand up the GKE cluster:</p>
+<p>To preview and deploy changes, run <code>pulumi update</code> and select "yes."</p>
+<p>The <code>update</code> sub-command shows a preview of the resources that will be created
+and prompts on whether to proceed with the deployment. Note that the stack
+itself is counted as a resource, though it does not correspond
+to a physical cloud resource.</p>
+<p>You can also run <code>pulumi up --diff</code> to see and inspect the diffs of the
+overall changes expected to take place.</p>
+<p>Running <code>pulumi up</code> will deploy the GKE cluster. Note, provisioning a
+new GKE cluster takes between 3-5 minutes.</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi update
+Previewing update <span class="token punctuation">(</span>gke-demo<span class="token punctuation">)</span>:
+
+	Type                            Name                             Plan
++   pulumi:pulumi:Stack             gcp-ts-gke-hello-world-gke-demo  create
++   ├─ gcp:container:Cluster        helloworld                       create
++   ├─ pulumi:providers:kubernetes  helloworld                       create
++   ├─ kubernetes:core:Namespace    helloworld                       create
++   ├─ kubernetes:apps:Deployment   helloworld                       create
++   └─ kubernetes:core:Service      helloworld                       create
+
+Resources:
+	+ <span class="token number">6</span> to create
+
+Updating <span class="token punctuation">(</span>gke-demo<span class="token punctuation">)</span>:
+
+	Type                            Name                             Status
++   pulumi:pulumi:Stack             gcp-ts-gke-hello-world-gke-demo  created
++   ├─ gcp:container:Cluster        helloworld                       created
++   ├─ pulumi:providers:kubernetes  helloworld                       created
++   ├─ kubernetes:core:Namespace    helloworld                       created
++   ├─ kubernetes:apps:Deployment   helloworld                       created
++   └─ kubernetes:core:Service      helloworld                       created
+
+Outputs:
+	clusterName    <span class="token builtin class-name">:</span> <span class="token string">"helloworld-e1557dc"</span>
+	deploymentName <span class="token builtin class-name">:</span> <span class="token string">"helloworld-tlsr4sg5"</span>
+	kubeconfig     <span class="token builtin class-name">:</span> <span class="token string">"&#x3C;KUBECONFIG_CONTENTS>"</span>
+	namespaceName  <span class="token builtin class-name">:</span> <span class="token string">"helloworld-pz4u5kyq"</span>
+	serviceName    <span class="token builtin class-name">:</span> <span class="token string">"helloworld-l61b5dby"</span>
+	servicePublicIP: <span class="token string">"35.236.26.151"</span>
+
+Resources:
+	+ <span class="token number">6</span> created
+
+Duration: 3m51s
+</code></pre>
+</li>
+<li>
+<p>After 3-5 minutes, your cluster will be ready, and the kubeconfig JSON you'll use to connect to the cluster will
+be available as an output.</p>
+<p> As part of the update, you'll see some new objects in the output: a
+<code>Namespace</code> in Kubernetes to deploy into, a <code>Deployment</code> resource for
+the NGINX app, and a LoadBalancer <code>Service</code> to publicly access NGINX.</p>
+<p> Pulumi understands which changes to a given cloud resource can be made
+in-place, and which require replacement, and computes
+the minimally disruptive change to achieve the desired state.</p>
+<blockquote>
+<p><strong>Note:</strong> Pulumi auto-generates a suffix for all objects.
+See the <a href="https://www.pulumi.com/docs/intro/concepts/resources/#autonaming">Pulumi Programming Model</a> for more info.</p>
+<pre><code>clusterName    : "helloworld-2a6de9a"
+deploymentName : "helloworld-tlsr4sg5"
+kubeconfig     : "&#x3C;KUBECONFIG_CONTENTS>"
+namespaceName  : "helloworld-pz4u5kyq"
+serviceName    : "helloworld-l61b5dby"
+servicePublicIP: "35.236.26.151"
+</code></pre>
+</blockquote>
+<p> If you visit the FQDN listed in <code>servicePublicIP</code> you should land on the
+NGINX welcome page. Note, that it may take a minute or so for the
+LoadBalancer to become active on GCP.</p>
+</li>
+<li>
+<p>Access the Kubernetes Cluster using <code>kubectl</code></p>
+<p>To access your new Kubernetes cluster using <code>kubectl</code>, we need to setup the
+<code>kubeconfig</code> file and download <code>kubectl</code>. We can leverage the Pulumi
+stack output in the CLI, as Pulumi facilitates exporting these objects for us.</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack output kubeconfig --show-secrets <span class="token operator">></span> kubeconfig
+$ <span class="token builtin class-name">export</span> <span class="token assign-left variable">KUBECONFIG</span><span class="token operator">=</span><span class="token environment constant">$PWD</span>/kubeconfig
+$ <span class="token builtin class-name">export</span> <span class="token assign-left variable">KUBERNETES_VERSION</span><span class="token operator">=</span><span class="token number">1.11</span>.6 <span class="token operator">&#x26;&#x26;</span> <span class="token function">sudo</span> <span class="token function">curl</span> -s -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v<span class="token variable">${KUBERNETES_VERSION}</span>/bin/linux/amd64/kubectl <span class="token operator">&#x26;&#x26;</span> <span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/kubectl
+
+$ kubectl version
+$ kubectl cluster-info
+$ kubectl get nodes
+</code></pre>
+<p>We can also use the stack output to query the cluster for our newly created Deployment:</p>
+<pre class="language-bash"><code class="language-bash">$ kubectl get deployment <span class="token variable"><span class="token variable">$(</span>pulumi stack output deploymentName<span class="token variable">)</span></span> --namespace<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>pulumi stack output namespaceName<span class="token variable">)</span></span>
+$ kubectl get <span class="token function">service</span> <span class="token variable"><span class="token variable">$(</span>pulumi stack output serviceName<span class="token variable">)</span></span> --namespace<span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>pulumi stack output namespaceName<span class="token variable">)</span></span>
+</code></pre>
+<p>We can also create another NGINX Deployment into the <code>default</code> namespace using
+<code>kubectl</code> natively:</p>
+<pre class="language-bash"><code class="language-bash">$ kubectl create deployment my-nginx --image<span class="token operator">=</span>nginx
+$ kubectl get pods
+$ kubectl delete deployment my-nginx
+</code></pre>
+<p>Of course, by doing so, resources are outside of Pulumi's purview, but this simply
+demonstrates that all the <code>kubectl</code> commands you're used to will work.</p>
+</li>
+<li>
+<p>Experimentation</p>
+<p>From here on, feel free to experiment. Simply making edits and running <code>pulumi up</code> afterwords, will incrementally update your stack.</p>
+<h3 id="running-off-the-shelf-guestbook-yaml"><a aria-hidden="true" class="anchor-heading" href="#running-off-the-shelf-guestbook-yaml"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Running Off-the-Shelf Guestbook YAML</h3>
+<p>For example, if you wish to pull existing Kubernetes YAML manifests into
+Pulumi to aid in your transition, append the following code block to the existing
+<code>index.ts</code> file and run <code>pulumi up</code>.</p>
+<p>This is an example of how to create the standard Kubernetes Guestbook manifests in
+Pulumi using the Guestbook YAML manifests. We take the additional steps of transforming
+its properties to use the same Namespace and metadata labels that
+the NGINX stack uses, and also make its frontend service use a
+LoadBalancer typed Service to expose it publicly.</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// Create resources for the Kubernetes Guestbook from its YAML manifests</span>
+<span class="token keyword">const</span> guestbook <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">k8s</span><span class="token punctuation">.</span><span class="token property-access">yaml</span><span class="token punctuation">.</span><span class="token method function property-access"><span class="token maybe-class-name">ConfigFile</span></span><span class="token punctuation">(</span><span class="token string">"guestbook"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        file<span class="token operator">:</span> <span class="token string">"https://raw.githubusercontent.com/pulumi/pulumi-kubernetes/master/tests/sdk/nodejs/examples/yaml-guestbook/yaml/guestbook.yaml"</span><span class="token punctuation">,</span>
+        transformations<span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token punctuation">(</span>obj<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span> <span class="token arrow operator">=></span> <span class="token punctuation">{</span>
+                <span class="token comment">// Do transformations on the YAML to use the same namespace and</span>
+                <span class="token comment">// labels as the NGINX stack above</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>obj<span class="token punctuation">.</span><span class="token property-access">metadata</span><span class="token punctuation">.</span><span class="token property-access">labels</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    obj<span class="token punctuation">.</span><span class="token property-access">metadata</span><span class="token punctuation">.</span><span class="token property-access">labels</span><span class="token punctuation">[</span><span class="token string">'appClass'</span><span class="token punctuation">]</span> <span class="token operator">=</span> namespaceName
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    obj<span class="token punctuation">.</span><span class="token property-access">metadata</span><span class="token punctuation">.</span><span class="token property-access">labels</span> <span class="token operator">=</span> appLabels
+                <span class="token punctuation">}</span>
+
+                <span class="token comment">// Make the 'frontend' Service public by setting it to be of type</span>
+                <span class="token comment">// LoadBalancer</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>obj<span class="token punctuation">.</span><span class="token property-access">kind</span> <span class="token operator">==</span> <span class="token string">"Service"</span> <span class="token operator">&#x26;&#x26;</span> obj<span class="token punctuation">.</span><span class="token property-access">metadata</span><span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token operator">==</span> <span class="token string">"frontend"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>obj<span class="token punctuation">.</span><span class="token property-access">spec</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        obj<span class="token punctuation">.</span><span class="token property-access">spec</span><span class="token punctuation">.</span><span class="token keyword">type</span> <span class="token operator">=</span> <span class="token string">"LoadBalancer"</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+        providers<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token string">"kubernetes"</span><span class="token operator">:</span> clusterProvider <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Export the Guestbook public LoadBalancer endpoint</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> guestbookPublicIP <span class="token operator">=</span>
+    guestbook<span class="token punctuation">.</span><span class="token method function property-access">getResourceProperty</span><span class="token punctuation">(</span><span class="token string">"v1/Service"</span><span class="token punctuation">,</span> <span class="token string">"frontend"</span><span class="token punctuation">,</span> <span class="token string">"status"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">apply</span><span class="token punctuation">(</span>s <span class="token arrow operator">=></span> s<span class="token punctuation">.</span><span class="token property-access">loadBalancer</span><span class="token punctuation">.</span><span class="token property-access">ingress</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token property-access">ip</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li>
+<p>Once you've finished experimenting, tear down your stack's resources by destroying and removing it:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi destroy --yes
+$ pulumi stack <span class="token function">rm</span> --yes
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/index.ts">index.ts</a></li>
+<li><a href="/assets/package.json">package.json</a></li>
+<li><a href="/assets/tsconfig.json">tsconfig.json</a></li>
+</ul><span id="navId" data="gcp-ts-gke-hello-world"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/gcp-ts-gke-hello-world/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

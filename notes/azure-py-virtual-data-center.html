@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Azure Py Virtual Data Center - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/azure-py-virtual-data-center.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/azure-py-virtual-data-center.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/azure-py-virtual-data-center.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Azure Py Virtual Data Center - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Azure Py Virtual Data Center - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Azure Py Virtual Data Center</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Azure Py Virtual Data Center">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="azure-virtual-data-center-vdc"><a aria-hidden="true" class="anchor-heading" href="#azure-virtual-data-center-vdc"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Azure Virtual Data Center (VDC)</h1>
+<p>This example deploys Azure Virtual Data Center (VDC) hub-and-spoke network stacks in Azure, complete with ExpressRoute and VPN Gateways, Azure Firewall (with provision for forced tunnelling) guarding a DMZ, and Azure Bastion. In addition, as many subnets as required for shared services in the hub and application environments in the spokes may be simply specified.</p>
+<p>In this implementation, the Azure Firewall is central. Custom routing redirects all traffic to and from hub and spokes, as well as all traffic to, within and from the DMZ, through the firewall (which scales out as a service to handle the throughput). Firewall rules are required to allow traffic through (not yet implemented). Traffic between shared services subnets in the hub and between subnets within the spokes is not redirected through the firewall, and should instead be controlled using Network Security Groups (not yet implemented).</p>
+<p>With minimal configuration, matching stacks may be deployed in Azure <a href="https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions">paired regions</a>, configured for Production/Disaster Recovery or High Availability (or both for different applications). Global VNet Peering between the hubs connects the separate stacks into one symmetric network.</p>
+<p>Although the VDC pattern is in widespread use, Azure now offers a managed service intended to replace it, comprising Virtual Hub along with partner SD-WAN components, with a <a href="https://docs.microsoft.com/en-us/azure/virtual-wan/migrate-from-hub-spoke-topology">migration plan</a> that illustrates the differences between the two patterns. But if you want or need to manage your own network infrastructure, VDC is still relevant.</p>
+<p>This example uses <code>pulumi.ComponentResource</code> as described <a href="https://www.pulumi.com/docs/intro/concepts/resources/#components">here</a> which demonstrates how multiple low-level resources can be composed into a higher-level, reusable abstraction. It also demonstrates use of <code>pulumi.StackReference</code> as described <a href="https://www.pulumi.com/docs/guides/organizing-projects-stacks/">here</a> to relate multiple stacks. Finally, it uses Python's <code>ipaddress</code> module to simplify and validate configuration of network addresses.</p>
+<h2 id="prerequisites"><a aria-hidden="true" class="anchor-heading" href="#prerequisites"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Prerequisites</h2>
+<ol>
+<li><a href="https://www.pulumi.com/docs/get-started/install/">Install Pulumi</a></li>
+<li><a href="https://www.pulumi.com/docs/intro/cloud-providers/azure/setup/">Configure Pulumi for Azure</a></li>
+<li><a href="https://www.pulumi.com/docs/intro/languages/python/">Configure Pulumi for Python</a></li>
+</ol>
+<h1 id="running-the-example"><a aria-hidden="true" class="anchor-heading" href="#running-the-example"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Running the Example</h1>
+<p>After cloning this repo, <code>cd</code> into the <code>azure-py-virtual-data-center</code> directory and run the following commands.</p>
+<ol>
+<li>
+<p>Create a new stack intended for Production (for example's sake):</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack init prod
+</code></pre>
+<p>This will appear within your Pulumi organization under the <code>azure-py-vdc</code> project (as specified in <code>Pulumi.yaml</code>).</p>
+</li>
+<li>
+<p>Create a Python virtualenv, activate it, and install dependencies:</p>
+<p>This installs the dependent packages <a href="https://www.pulumi.com/docs/intro/concepts/how-pulumi-works/">needed</a> for our Pulumi program.</p>
+<pre class="language-bash"><code class="language-bash">$ python3 -m venv venv
+$ <span class="token builtin class-name">source</span> venv/bin/activate
+$ pip3 <span class="token function">install</span> -r requirements.txt
+</code></pre>
+</li>
+<li>
+<p>Set the configuration variables for this stack to suit yourself, following guidance in <code>Pulumi.yaml</code>. This will create a new <code>Pulumi.prod.yaml</code> file (named after the stack) in which to store them:</p>
+<p>Required:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> firewall_address_space   <span class="token number">192.168</span>.100.0/24
+$ pulumi config <span class="token builtin class-name">set</span> hub_address_space        <span class="token number">10.100</span>.0.0/16
+$ pulumi config <span class="token builtin class-name">set</span> azure-native:location    australiaeast
+</code></pre>
+<p>Optional:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> azure_bastion            <span class="token boolean">true</span>
+$ pulumi config <span class="token builtin class-name">set</span> forced_tunnel            <span class="token number">10.0</span>.100.1
+$ pulumi config <span class="token builtin class-name">set</span> separator                <span class="token string">' '</span>
+$ pulumi config <span class="token builtin class-name">set</span> suffix                   ae
+</code></pre>
+<p>Note that it is advisable to enable Azure Bastion on a second pass to avoid contention.</p>
+</li>
+<li>
+<p>Deploy the <code>prod</code> stack with the <code>pulumi up</code> command. This may take up to an hour to provision all the Azure resources specified, including gateways, firewall and bastion hosts:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi up
+</code></pre>
+</li>
+<li>
+<p>After a while, your Production stack will be ready.</p>
+<pre><code>Updating (prod)
+
+View Live: https://app.pulumi.com/organization/azureng-py-vdc/prod/updates/1
+
+     Type                                                      Name                 Status
+ +   pulumi:pulumi:Stack                                       azureng-py-vdc-prod  created
+ +   ├─ vdc:network:Hub                                        hub                  created
+ +   │  ├─ azure-native:network:VirtualNetwork                 hub_vn_ae            created
+ +   │  ├─ azure-native:network:RouteTable                     hub_fwm_rt_ae        created
+ +   │  ├─ azure-native:network:RouteTable                     hub_fw_rt_ae         created
+ +   │  ├─ azure-native:network:Route                          fwm_internet_r       created
+ +   │  ├─ azure-native:network:Route                          fw_tunnel_r          created
+ +   │  ├─ azure-native:network:Subnet                         hub_fwm_sn           created
+ +   │  ├─ azure-native:network:Subnet                         hub_fw_sn            created
+ +   │  ├─ azure-native:network:PublicIPAddress                hub_fw_pip_ae        created
+ +   │  ├─ azure-native:network:PublicIPAddress                hub_fwm_pip_ae       created
+ +   │  ├─ azure-native:network:AzureFirewall                  hub_fw_ae            created
+ +   │  ├─ azure-native:network:RouteTable                     hub_dmz_rt_ae        created
+ +   │  ├─ azure-native:network:Route                          dmz_dg_r             created
+ +   │  ├─ azure-native:network:Route                          dmz_dmz_r            created
+ +   │  ├─ azure-native:network:Route                          dmz_hub_r            created
+ +   │  ├─ azure-native:network:Subnet                         hub_dmz_sn           created
+ +   │  ├─ azure-native:network:RouteTable                     hub_gw_rt_ae         created
+ +   │  ├─ azure-native:network:Route                          gw_gw_r              created
+ +   │  ├─ azure-native:network:Route                          gw_dmz_r             created
+ +   │  ├─ azure-native:network:Route                          gw_hub_r             created
+ +   │  ├─ azure-native:network:Subnet                         hub_gw_sn            created
+ +   │  ├─ azure-native:network:PublicIPAddress                hub_vpn_gw_pip_ae    created
+ +   │  ├─ azure-native:network:PublicIPAddress                hub_er_gw_pip_ae     created
+ +   │  ├─ azure-native:network:VirtualNetworkGateway          hub_vpn_gw_ae        created
+ +   │  ├─ azure-native:network:VirtualNetworkGateway          hub_er_gw_ae         created
+ +   │  ├─ azure-native:network:RouteTable                     hub_ss_rt_ae         created
+ +   │  ├─ azure-native:network:PublicIPAddress                hub_ab_pip_ae        created
+ +   │  ├─ azure-native:network:Subnet                         hub_ab_sn            created
+ +   │  ├─ azure-native:network:Route                          ss_dg_r              created
+ +   │  ├─ azure-native:network:Route                          ss_dmz_r             created
+ +   │  ├─ azure-native:network:Route                          ss_gw_r              created
+ +   │  ├─ azure-native:network:Subnet                         hub_domain_sn        created
+ +   │  ├─ azure-native:network:Subnet                         hub_files_sn         created
+ +   │  └─ azure-native:network:BastionHost                    hub_ab_ae            created
+ +   ├─ vdc:network:Spoke                                      s01                  created
+ +   │  ├─ azure-native:network:VirtualNetwork                 s01_vn_ae            created
+ +   │  ├─ azure-native:network:RouteTable                     s01_rt_ae            created
+ +   │  ├─ azure-native:network:VirtualNetworkPeering          hub_s01_vnp_ae       created
+ +   │  ├─ azure-native:network:Route                          s01_dg_r             created
+ +   │  ├─ azure-native:network:Route                          s01_hub_r            created
+ +   │  ├─ azure-native:network:Route                          s01_dmz_r            created
+ +   │  ├─ azure-native:network:Route                          dmz_s01_r            created
+ +   │  ├─ azure-native:network:Route                          gw_s01_r             created
+ +   │  ├─ azure-native:network:VirtualNetworkPeering          s01_hub_vnp_ae       created
+ +   │  ├─ azure-native:network:Route                          ss_s01_r             created
+ +   │  ├─ azure-native:network:PublicIPAddress                s01_ab_pip_ae        created
+ +   │  ├─ azure-native:network:Subnet                         s01_ab_sn            created
+ +   │  ├─ azure-native:network:Subnet                         s01_web_sn           created
+ +   │  ├─ azure-native:network:Subnet                         s01_db_sn            created
+ +   │  ├─ azure-native:network:Subnet                         s01_app_sn           created
+ +   │  └─ azure-native:network:BastionHost                    s01_ab_ae            created
+ +   ├─ vdc:network:Spoke                                      s02                  created
+ +   │  ├─ azure-native:network:VirtualNetwork                 s02_vn_ae            created
+ +   │  ├─ azure-native:network:RouteTable                     s02_rt_ae            created
+ +   │  ├─ azure-native:network:VirtualNetworkPeering          hub_s02_vnp_ae       created
+ +   │  ├─ azure-native:network:Route                          s02_dg_r             created
+ +   │  ├─ azure-native:network:Route                          s02_dmz_r            created
+ +   │  ├─ azure-native:network:Route                          s02_hub_r            created
+ +   │  ├─ azure-native:network:Route                          dmz_s02_r            created
+ +   │  ├─ azure-native:network:Route                          gw_s02_r             created
+ +   │  ├─ azure-native:network:VirtualNetworkPeering          s02_hub_vnp_ae       created
+ +   │  ├─ azure-native:network:Route                          ss_s02_r             created
+ +   │  ├─ azure-native:network:PublicIPAddress                s02_ab_pip_ae        created
+ +   │  ├─ azure-native:network:Subnet                         s02_ab_sn            created
+ +   │  ├─ azure-native:network:Subnet                         s02_app_sn           created
+ +   │  ├─ azure-native:network:Subnet                         s02_web_sn           created
+ +   │  ├─ azure-native:network:Subnet                         s02_db_sn            created
+ +   │  └─ azure-native:network:BastionHost                    s02_ab_ae            created
+ +   └─ azure-native:resources:ResourceGroup                   prod_vdc_rg_ae       created
+
+Outputs:
+    dmz_ar: "192.168.100.128/25"
+    fw_ip : "192.168.100.4"
+    hub_as: "10.100.0.0/16"
+    hub_id: "/subscriptions/subscription/resourceGroups/prod_vdc_rg_ae/providers/Microsoft.Network/virtualNetworks/hub_vn_ae"
+    s01_as: "10.101.0.0/16"
+    s01_id: "/subscriptions/subscription/resourceGroups/prod_vdc_rg_ae/providers/Microsoft.Network/virtualNetworks/s01_vn_ae"
+    s02_as: "10.102.0.0/16"
+    s02_id: "/subscriptions/subscription/resourceGroups/prod_vdc_rg_ae/providers/Microsoft.Network/virtualNetworks/s02_vn_ae"
+
+Resources:
+    + 70 created
+
+Duration: 45m1s
+</code></pre>
+<p>Feel free to modify your program, and then run <code>pulumi up</code> again. Pulumi automatically detects differences and makes the minimal changes necessary to achieved the desired state. If any changes to resources are made outside of Pulumi, you should first do a <code>pulumi refresh</code> so that Pulumi can discover the actual situation, and then <code>pulumi up</code> to return to desired state.</p>
+</li>
+<li>
+<p>Create another new stack intended for Disaster Recovery (following the example):</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack init dr
+</code></pre>
+<p>This will also appear within your Pulumi organization under the <code>azureng-py-vdc</code> project (as specified in <code>Pulumi.yaml</code>).</p>
+</li>
+<li>
+<p>Set the configuration variables for this stack which will be stored in a new <code>Pulumi.dr.yaml</code> file (change the values below to suit yourself):</p>
+<p>Required:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> firewall_address_space   <span class="token number">192.168</span>.200.0/24
+$ pulumi config <span class="token builtin class-name">set</span> hub_address_space        <span class="token number">10.200</span>.0.0/16
+$ pulumi config <span class="token builtin class-name">set</span> location                 australiasoutheast
+</code></pre>
+<p>Optional:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> azure_bastion            <span class="token boolean">true</span>
+$ pulumi config <span class="token builtin class-name">set</span> forced_tunnel            <span class="token number">10.0</span>.200.1
+$ pulumi config <span class="token builtin class-name">set</span> separator                _    
+$ pulumi config <span class="token builtin class-name">set</span> suffix                   ase
+</code></pre>
+<p>Note that it is advisable to enable Azure Bastion on a second pass to avoid contention.</p>
+</li>
+<li>
+<p>Deploy the <code>dr</code> stack with the <code>pulumi up</code> command. Once again, this may take up to an hour to provision all the Azure resources specified, including gateways, firewall and bastion hosts:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi up
+</code></pre>
+</li>
+<li>
+<p>Once you have both Production and Disaster Recovery stacks (ideally in paired regions), you can connect their hubs using Global (between regions) VNet Peering:</p>
+<p>Required:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack <span class="token keyword">select</span> prod
+$ pulumi config <span class="token builtin class-name">set</span> peer dr
+$ pulumi up
+$ pulumi stack <span class="token keyword">select</span> dr
+$ pulumi config <span class="token builtin class-name">set</span> peer prod
+$ pulumi up
+</code></pre>
+<p>Optional (for each stack):</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> org         organization
+$ pulumi config <span class="token builtin class-name">set</span> project     project
+</code></pre>
+<p>Note: you may specify another organization and/or project (corresponding hub and spoke names should be the same). It isn't yet <a href="https://github.com/pulumi/pulumi/issues/2800">possible</a> to discover the Pulumi organization from within the program.</p>
+<p>If you later destroy a stack, you need to remove the corresponding <code>peer</code> variable in the other stack and run <code>pulumi up</code>. If you want to tear down the peerings, you should remove the <code>peer</code> variables in both stacks and run <code>pulumi up</code>:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack <span class="token keyword">select</span> prod
+$ pulumi config <span class="token function">rm</span> peer
+$ pulumi up
+$ pulumi stack <span class="token keyword">select</span> dr
+$ pulumi config <span class="token function">rm</span> peer
+$ pulumi up
+</code></pre>
+<p>You need to remove both peerings before you can connect the hubs again.</p>
+</li>
+<li>
+<p>When you are finished experimenting, you can destroy all of the resources, and the stacks:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack <span class="token keyword">select</span> prod
+$ pulumi destroy
+$ pulumi stack <span class="token function">rm</span>
+$ pulumi stack <span class="token keyword">select</span> dr
+$ pulumi destroy
+$ pulumi stack <span class="token function">rm</span>
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/__main__.py"><strong>main</strong>.py</a></li>
+<li><a href="/assets/config.py">config.py</a></li>
+<li><a href="/assets/hub.py">hub.py</a></li>
+<li><a href="/assets/requirements.txt">requirements.txt</a></li>
+<li><a href="/assets/spoke.py">spoke.py</a></li>
+<li><a href="/assets/vdc.py">vdc.py</a></li>
+</ul><span id="navId" data="azure-py-virtual-data-center"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/azure-py-virtual-data-center/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

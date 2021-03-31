@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Aws Py Voting App - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/aws-py-voting-app.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/aws-py-voting-app.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/aws-py-voting-app.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Aws Py Voting App - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Aws Py Voting App - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Aws Py Voting App</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Aws Py Voting App">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="voting-app-using-redis-and-flask"><a aria-hidden="true" class="anchor-heading" href="#voting-app-using-redis-and-flask"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Voting app Using Redis and Flask</h1>
+<p>A simple voting app that uses Redis for a data store and a Python Flask app for the frontend. The example has been ported from <a href="https://github.com/Azure-Samples/azure-voting-app-redis">https://github.com/Azure-Samples/azure-voting-app-redis</a>.</p>
+<p>The example shows how easy it is to deploy containers into production and to connect them to one another. Since the example defines a custom container, Pulumi does the following:</p>
+<ul>
+<li>Builds the Docker image</li>
+<li>Provisions AWS Container Registry (ECR) instance</li>
+<li>Pushes the image to the ECR instance</li>
+<li>Creates a new ECS task definition, pointing to the ECR image definition</li>
+</ul>
+<h2 id="prerequisites"><a aria-hidden="true" class="anchor-heading" href="#prerequisites"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Prerequisites</h2>
+<ol>
+<li><a href="https://www.pulumi.com/docs/get-started/install/">Install Pulumi</a></li>
+<li><a href="https://www.pulumi.com/docs/intro/cloud-providers/aws/setup/">Configure Pulumi for AWS</a></li>
+<li><a href="https://www.pulumi.com/docs/intro/languages/python/">Configure Pulumi for Python</a></li>
+<li><a href="https://docs.docker.com/engine/installation/">Install Docker</a></li>
+</ol>
+<h2 id="deploying-and-running-the-program"><a aria-hidden="true" class="anchor-heading" href="#deploying-and-running-the-program"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Deploying and running the program</h2>
+<ol>
+<li>
+<p>Create a new stack:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack init aws-py-voting-app
+</code></pre>
+</li>
+<li>
+<p>Set the AWS region and Redis password:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> aws:region us-west-2
+$ pulumi config <span class="token builtin class-name">set</span> redis-password <span class="token operator">&#x3C;</span>PASSWORD<span class="token operator">></span> --secret
+</code></pre>
+</li>
+<li>
+<p>Run <code>pulumi up -y</code> to deploy changes:</p>
+<pre class="language-bash"><code class="language-bash">Updating <span class="token punctuation">(</span>aws-py-voting-app<span class="token punctuation">)</span>:
+    Type                                  Name                            Status      Info
++   pulumi:pulumi:Stack                   webserver-py-aws-py-voting-app  created     
++   ├─ docker:image:Image                 flask-dockerimage               created     
++   ├─ aws:ec2:Vpc                        app-vpc                         created     
++   ├─ aws:ecs:Cluster                    app-cluster                     created     
++   ├─ aws:iam:Role                       app-exec-role                   created     
++   ├─ aws:iam:Role                       app-task-role                   created     
++   ├─ aws:ecr:Repository                 app-ecr-repo                    created     
++   ├─ aws:ecr:LifecyclePolicy            app-lifecycle-policy            created     
++   ├─ aws:iam:RolePolicyAttachment       app-exec-policy                 created     
++   ├─ aws:iam:RolePolicyAttachment       app-access-policy               created     
++   ├─ aws:iam:RolePolicyAttachment       app-lambda-policy               created     
++   ├─ aws:ecs:TaskDefinition             redis-task-definition           created     
++   ├─ aws:ec2:InternetGateway            app-gateway                     created     
++   ├─ aws:ec2:SecurityGroup              security-group                  created     
++   ├─ aws:ec2:Subnet                     app-vpc-subnet                  created     
++   ├─ aws:lb:TargetGroup                 redis-targetgroup               created     
++   ├─ aws:lb:TargetGroup                 flask-targetgroup               created     
++   ├─ aws:ec2:RouteTable                 app-routetable                  created     
++   ├─ aws:lb:LoadBalancer                redis-balancer                  created     
++   ├─ aws:lb:LoadBalancer                flask-balancer                  created     
++   ├─ aws:ec2:MainRouteTableAssociation  app_routetable_association      created     
++   ├─ aws:lb:Listener                    flask-listener                  created     
++   ├─ aws:lb:Listener                    redis-listener                  created     
++   ├─ aws:ecs:TaskDefinition             flask-task-definition           created     
++   ├─ aws:ecs:Service                    redis-service                   created     
++   └─ aws:ecs:Service                    flask-service                   created     
+
+Outputs:
+    app-url: <span class="token string">"flask-balancer-3987b84-b596c9ee2027f152.elb.us-west-2.amazonaws.com"</span>
+
+Resources:
+    + <span class="token number">26</span> created
+
+Duration: 3m10s
+</code></pre>
+</li>
+<li>
+<p>View the DNS address of the instance via <code>stack output</code>:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack output
+Current stack outputs <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>:
+    OUTPUT   VALUE
+    app-url  flask-balancer-3987b84-b596c9ee2027f152.elb.us-west-2.amazonaws.com
+
+</code></pre>
+</li>
+<li>
+<p>Verify that the EC2 instance exists, by connecting to it in a browser window.</p>
+</li>
+</ol>
+<h2 id="clean-up"><a aria-hidden="true" class="anchor-heading" href="#clean-up"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Clean up</h2>
+<p>To clean up resources, run <code>pulumi destroy</code> and answer the confirmation question at the prompt.</p>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/__main__.py"><strong>main</strong>.py</a></li>
+<li><a href="/assets/requirements.txt">requirements.txt</a></li>
+</ul>
+<hr>
+<h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
+<ol>
+<li><a href="https://pulumi.dendron.so/notes/aws-py-voting-app.frontend.html">Frontend</a></li>
+</ol><span id="navId" data="aws-py-voting-app"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/aws-py-voting-app/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

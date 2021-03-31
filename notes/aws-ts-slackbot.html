@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Aws Ts Slackbot - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/aws-ts-slackbot.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/aws-ts-slackbot.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/aws-ts-slackbot.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Aws Ts Slackbot - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Aws Ts Slackbot - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Aws Ts Slackbot</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Aws Ts Slackbot">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="create-a-slackbot-for-posting-mention-notifications"><a aria-hidden="true" class="anchor-heading" href="#create-a-slackbot-for-posting-mention-notifications"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Create a Slackbot for Posting Mention Notifications</h1>
+<p>This is an example of a simple Slackbot (called '@mentionbot') that posts a notification to a specific channel any time you're @mentioned anywhere, whether in various channels or via direct message. This bot is useful for when you need a time-ordered list of @mentions to go through at a later point.</p>
+<p>Slack users can subscribe/unsubscribe from notifications easily.  To receive notifications, add <code>@mentionbot</code> to a channel you want to be notified in.  Then send any message to <code>@mentionbot</code> to subscribe.  To stop getting messages, send a message to <code>@mentionbot</code> containing the word <code>unsubscribe</code>.</p>
+<p>This Slackbot example contains a few useful patterns, showing you how to create a Slackbot while taking advantage of a lot of conveniences that Pulumi and the <code>aws</code> and <code>awsx</code> packages provide.</p>
+<ol>
+<li>We set up an ApiGateway API to receive push notifications from Slack whenever important events happen.</li>
+<li>Slack has strict requirements on how quickly the push endpoint must respond with <code>200</code> notifications before they consider the message as "not received", triggering back-off and resending of those same messages.  For this reason, our example does not process Slack <code>event</code> messages as they come in.  Instead, they are immediately added to an <a href="https://aws.amazon.com/sns/">AWS SNS Topic</a> to be processed at a later point in time. This allows the ApiGateway call to return quickly, satisfying Slack's requirements.</li>
+<li>Two <a href="https://aws.amazon.com/lambda/">AWS Lambdas</a> are created naturally using simple JavaScript functions.  One function is used to create the Lambda that is called when Slack pushes a notification.  The other is used to specify the Lamdba that will process the messages added to the Topic.  These JavaScript functions can easily access the other Pulumi resources created, avoiding the need to figure out ways to pass Resource ARNs/IDs/etc. to the Lambdas to ensure they can talk to the right resources.  If these resources are swapped out in the future (for example, using RDS instead of DynamoDB, or SQS instead of SNS), Pulumi will make sure that the Lambdas were updated properly.</li>
+<li><a href="https://www.pulumi.com/docs/intro/concepts/config/">Pulumi Secrets</a> provides a simple way to pass important credentials (like your Slack tokens) without having to directly embed them in your application code.</li>
+</ol>
+<p>First, we'll set up the Pulumi App.  Then, we'll go create and configure a Slack App and Bot to interact with our Pulumi App.</p>
+<h2 id="deploy-the-app"><a aria-hidden="true" class="anchor-heading" href="#deploy-the-app"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Deploy the App</h2>
+<blockquote>
+<p><strong>Note:</strong> Some values in this example will be different from run to run.  These values are indicated
+with <code>***</code>.</p>
+</blockquote>
+<h3 id="step-1-create-a-new-stack"><a aria-hidden="true" class="anchor-heading" href="#step-1-create-a-new-stack"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 1: Create a new stack</h3>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack init mentionbot
+</code></pre>
+<h3 id="step-2-set-the-aws-region"><a aria-hidden="true" class="anchor-heading" href="#step-2-set-the-aws-region"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 2: Set the AWS region</h3>
+<pre><code>$ pulumi config set aws:region us-east-2
+</code></pre>
+<h3 id="step-3-restore-npm-modules"><a aria-hidden="true" class="anchor-heading" href="#step-3-restore-npm-modules"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 3: Restore NPM modules</h3>
+<p>Run <code>npm install</code> or <code>yarn install</code> to restore your NPM modules.</p>
+<h3 id="step-4-preview-and-deploy-your-app"><a aria-hidden="true" class="anchor-heading" href="#step-4-preview-and-deploy-your-app"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 4: Preview and deploy your app</h3>
+<p>Run <code>pulumi up</code> to preview and deploy your AWS resources.</p>
+<pre><code>$ pulumi up
+Previewing update (mentionbot):
+...
+
+    Do you want to perform this update? yes
+    Updating (mentionbot):
+
+         Type                                Name                          Status 
+     +   pulumi:pulumi:Stack                 aws-ts-slack-mentionbot       created
+     +   ├─ aws:sns:TopicEventSubscription   processTopicMessage           created
+     +   │  ├─ aws:iam:Role                  processTopicMessage           created
+     +   │  ├─ aws:iam:RolePolicyAttachment  processTopicMessage-32be53a2  created
+     +   │  ├─ aws:lambda:Function           processTopicMessage           created
+     +   │  ├─ aws:sns:TopicSubscription     processTopicMessage           created
+     +   │  └─ aws:lambda:Permission         processTopicMessage           created
+     +   ├─ aws:apigateway:x:API             mentionbot                    created
+     +   │  ├─ aws:iam:Role                  mentionbot8e3f228c            created
+     +   │  ├─ aws:iam:RolePolicyAttachment  mentionbot8e3f228c-32be53a2   created
+     +   │  ├─ aws:lambda:Function           mentionbot8e3f228c            created
+     +   │  ├─ aws:apigateway:RestApi        mentionbot                    created
+     +   │  ├─ aws:apigateway:Deployment     mentionbot                    created
+     +   │  ├─ aws:lambda:Permission         mentionbot-89b3ba11           created
+     +   │  └─ aws:apigateway:Stage          mentionbot                    created
+     +   ├─ aws:dynamodb:Table               subscriptions                 created
+     +   └─ aws:sns:Topic                    messages                      created
+
+    Outputs:
+        url: "https://***.execute-api.us-east-2.amazonaws.com/stage/"
+
+    Resources:
+        + 17 created
+
+    Duration: 25s
+
+    Permalink: https://app.pulumi.com/***/mentionbot/updates/1
+</code></pre>
+<h3 id="step-5-create-a-new-slackbot"><a aria-hidden="true" class="anchor-heading" href="#step-5-create-a-new-slackbot"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 5: Create a new Slackbot</h3>
+<p>To create a new Slackbot, first go to <a href="https://api.slack.com/apps">https://api.slack.com/apps</a> and create an account if necessary.  Next, click on 'Create New App' here:</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55648728-e7127180-5795-11e9-9ddf-849d789ea05b.png">
+</p>
+    
+Pick your desired name for the app, and the Workspace the app belongs to.  Here we choose `MentionBot`:
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55648747-f7c2e780-5795-11e9-9f95-e715ba76b7c8.png">
+</p>
+<p>Once created, you will need to 'Add features and functionality' to your app. You'll eventually need all these configured:</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55648788-15904c80-5796-11e9-9c6c-27f68c900f13.png">
+</p>
+<p>First, we'll enable 'Incoming Webhooks'.  This allows your Slack bot to post messages into Slack for you:</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55648806-22ad3b80-5796-11e9-8dfd-ba86b7ba9351.png">
+</p>
+<p>Next, create a bot user like so:</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55648827-32c51b00-5796-11e9-9abc-086a3760f6af.png">
+</p>
+<p>Next, we'll enable 'Event Subscriptions'.  This will tell Slack to push events to your ApiGateway endpoint when changes happen.  Note that we put the Stack-Output <code>url</code> shown above (along with the <code>events</code> suffix).  This corresponds to the specific ApiGateway Route that was defined in the Pulumi app. Note that Slack will test this endpoint to ensure it is accepting Slack notifications and responding to them in a valid manner.  We'll also setup notifications for the events we care about.  Importantly, our Slackbot will have to hear about when people mention it (for subscribing/unsubscribing), as well as hearing about all messages (so it can look for @-mentions):</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55648880-58522480-5796-11e9-95fd-edfc9d12c381.png">
+<img src="https://user-images.githubusercontent.com/4564579/55648902-63a55000-5796-11e9-8cf6-8e8f4909d600.png">
+</p>
+<p>Next, we'll go to 'Permissions'.  Here, we can find the OAuth tokens your Pulumi App will need.  Specifically, we'll need the 'Bot User OAuth Token' listed here:</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55648951-7fa8f180-5796-11e9-81ba-b45d7ebc4bb7.png">
+</p>
+<p>Underneath this, we'll set the following Scopes defining the permissions of the bot:</p>
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/4564579/55647362-55edcb80-5792-11e9-8f60-ae5261fa9c9a.png">
+</p>
+<p>Now, we're almost done.  The only thing left to do is supply your Pulumi App with the appropriate secrets/tokens.  We'll need the Bot OAuth token (shown above), and the 'Verification Token' (found under 'Basic Information'): </p>
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/4564579/55647507-af55fa80-5792-11e9-80bf-b07b894d996f.png">
+</p>
+<p>Supply these both like so:</p>
+<pre><code>$ pulumi config set --secret mentionbot:slackToken xoxb-...
+$ pulumi config set --secret mentionbot:verificationToken d...
+</code></pre>
+<p>Next, install the Slack App into your workspace:</p>
+<p align="center">
+   <img src="https://user-images.githubusercontent.com/4564579/55647599-eaf0c480-5792-11e9-88c5-83daefb32580.png">
+</p>
+<p>And we're done!</p>
+<h3 id="step-6-interact-with-the-slackbot"><a aria-hidden="true" class="anchor-heading" href="#step-6-interact-with-the-slackbot"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 6: Interact with the Slackbot</h3>
+<p>From Slack you can now create your own private channel:</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55647696-2ab7ac00-5793-11e9-8165-5672146036d3.png">
+</p>
+<p>Invite the bot to the channel:</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55647722-40c56c80-5793-11e9-8a97-5ce087d2bfe3.png">
+</p>
+<p>Then send it a message.  Note that it may take several seconds for the bot to respond due to Slack push notification delays, SNS Topic delays, and Slack incoming message delays.</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55648466-3e641200-5795-11e9-9917-e64cdf45b63e.png">
+</p>
+<p>And you're set!  From now on when someone from your team mentions you, you'll get a little message with a direct mention in your channel like so:</p>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/4564579/55648631-b0d4f200-5795-11e9-886a-8ce0f932e9f1.png">
+</p>
+<h2 id="clean-up"><a aria-hidden="true" class="anchor-heading" href="#clean-up"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Clean up</h2>
+<ol>
+<li>
+<p>Run <code>pulumi destroy</code> to tear down all resources.</p>
+</li>
+<li>
+<p>To delete the stack itself, run <code>pulumi stack rm</code>. Note that this command deletes all deployment history from the Pulumi Console.</p>
+</li>
+</ol>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/index.ts">index.ts</a></li>
+<li><a href="/assets/package.json">package.json</a></li>
+<li><a href="/assets/tsconfig.json">tsconfig.json</a></li>
+</ul><span id="navId" data="aws-ts-slackbot"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/aws-ts-slackbot/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

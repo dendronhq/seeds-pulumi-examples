@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Cms Oauth - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms-oauth.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms-oauth.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms-oauth.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Cms Oauth - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Cms Oauth - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so/notes/c2ff66dd-b756-4729-a0e9-0ad284da7c4b.html">Aws Ts Netlify Cms and Oauth</a></li><li class="breadcrumb-nav-list-item">Cms Oauth</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Cms Oauth">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <h1 id="about-the-project"><a aria-hidden="true" class="anchor-heading" href="#about-the-project"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>About the Project</h1>
+<p>This OAuth Server Project is connected with CMS project which deploy on AWS S3 rather than on Netlify. In this way, it requires us to create a OAuth Client Server for Netlify CMS. Netlify use the Netlify Identity Service which provides OAuth provider server. Based on <a href="https://www.netlifycms.org/docs/external-oauth-clients/">Netlify's instruction</a> of customize this step we need to provide our own OAuth client.</p>
+<p>In this example, we are using <a href="https://www.netlifycms.org/docs/github-backend/">Netlify CMS's Github backends</a> for CMS, but the OAuth Provider code enabled more types of backends Bitbucket and Gitlab. If you are using these <a href="https://www.netlifycms.org/docs/backends-overview/">backends</a>, simply update the callback url you are register Github OAuth Applicationc (See step 1 in the Getting Started section) to be https://{{the domain of your OAuth App}}/bitbucket/callback or https://{{the domain of your OAuth App}}/gitlab/callback</p>
+<h2 id="references"><a aria-hidden="true" class="anchor-heading" href="#references"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>References</h2>
+<p>The provider's content code is referencing to the <a href="https://www.netlifycms.org/docs/external-oauth-clients/">External OAuth Client example from Netlify CMS</a>.
+Here are some reference:</p>
+<ul>
+<li>@igk1972 <a href="https://github.com/igk1972/netlify-cms-oauth-provider-go">OAuth provider</a> Thanks to Igor Kuznetsov for writing go code for OAuth Provider and it's frontend in file main.go. We updated the code in these ways:
+<ul>
+<li>Now we have set the <a href="https://developer.github.com/apps/building-oauth-apps/understanding-scopes-for-oauth-apps/">Github scope</a> (which variable specify what kind of access we want) to be public_repo (only permits read and write on the public repo). See line 132 of main.go for setting different scope.</li>
+<li>We also changed line 34 which fail to do JSON.stringify() the provided result</li>
+<li>We deleted "https://" when it is trying to concate with "/auth" because the environment variable HOST already contain "https://"</li>
+<li>We change line 158 the port that OAuth Server is listen to. Now the http is listen and serve for the port of the target group we set as Pulumi stack configuration and environment variable. The default value for the target group is 80 which is port for the local development. You could change the default port by specify the optional Pulumi config targetGroup Port.</li>
+</ul>
+</li>
+<li>pulumi's <a href="https://github.com/pulumi/examples/tree/master/aws-ts-hello-fargate">hello fargate example</a> for connecting to AWS Fargate to adopt Docker setting in cloud</li>
+<li>pulumi's <a href="https://github.com/pulumi/examples/tree/master/aws-ts-static-website">static website example</a> for configuring certificate and obtain a subdomain for the provider server</li>
+</ul>
+<h2 id="file-structure"><a aria-hidden="true" class="anchor-heading" href="#file-structure"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>File Structure</h2>
+<ul>
+<li>./infrastructure
+<ul>
+<li>Pulumi code with setting up AWS Fargate and the configuring certificate and domain</li>
+</ul>
+</li>
+<li>./main.go the code for the provider itself and it's front end
+<ul>
+<li>It is fetching the access token sent from Github API using Github's goth library. </li>
+</ul>
+</li>
+<li>.github/workflow contain code for the workflow</li>
+</ul>
+<h2 id="infrastructure"><a aria-hidden="true" class="anchor-heading" href="#infrastructure"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Infrastructure</h2>
+<p>The OAuth Client Server was deployed on AWS using Pulumi. The Pulumi code use AWS Certificate Manager to create certificate and validate it. It is using AWS ECS Fargate to read docker image and establish a Fargate Service. Then it is also creating Alias Record on Route53 for the OAuth Server.</p>
+<h3 id="assume-role-optional"><a aria-hidden="true" class="anchor-heading" href="#assume-role-optional"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Assume Role (Optional)</h3>
+<p>It is recommended that you use an IAM role with more permissions in the <em>target</em> AWS using a token for an IAM user in the <em>source</em> account. To do this, you could refer to the <a href="https://github.com/pulumi/examples/tree/master/aws-ts-assume-role">aws-ts-assume-role example</a> for more information. The example is available in multiple languages in our <a href="https://github.com/pulumi/examples">examples repostiory</a>.</p>
+<h1 id="getting-start-replace-content-in-object-object-with-correct-informations"><a aria-hidden="true" class="anchor-heading" href="#getting-start-replace-content-in-object-object-with-correct-informations"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Getting Start (Replace content in [object Object] with correct informations)</h1>
+<p>These steps are now automated using the Github Workflow. If you push to the master or merge a pull request, the OAuth Client Server would be automatically deployed. Open a new branch and push to the branch would only do a pulumi preview where the logs could be check on Github Actions.  </p>
+<h3 id="step-1-register-oauth-application-in-github-and-obtain-key-and-secret"><a aria-hidden="true" class="anchor-heading" href="#step-1-register-oauth-application-in-github-and-obtain-key-and-secret"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 1. Register OAuth Application in Github and Obtain Key and Secret</h3>
+<ul>
+<li>Now it is using the OAuth Application in Pulumi's Github organization account</li>
+<li>Steps are provided using this link <a href="https://docs.netlify.com/visitor-access/oauth-provider-tokens/#setup-and-settings">https://docs.netlify.com/visitor-access/oauth-provider-tokens/#setup-and-settings</a></li>
+<li>For the Home Page Url should be link to cms's website</li>
+<li>For the Authorization callback URL enter https://{{the domain of your OAuth App}}/github/callback</li>
+</ul>
+<h3 id="step-2-fill-in-the-pulumi-configuration"><a aria-hidden="true" class="anchor-heading" href="#step-2-fill-in-the-pulumi-configuration"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 2. Fill in the pulumi configuration</h3>
+<ol>
+<li>
+<p>Make sure you are on the root directory of this repo.</p>
+</li>
+<li>
+<p>Get into the infrastructure folder and initialize a new stack</p>
+</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> infrastructure
+$ pulumi stack init <span class="token punctuation">{</span><span class="token punctuation">{</span>oauth-provider<span class="token punctuation">}</span><span class="token punctuation">}</span> <span class="token comment"># any name you want for your pulumi stack</span>
+</code></pre>
+<ol start="3">
+<li>Set AWS Region</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> aws:region us-east-1
+</code></pre>
+<ul>
+<li>It has to be set as us-east-1 because ACM certificate must be in the us-east-1 region.</li>
+</ul>
+<ol start="4">
+<li>Set Target Domain of OAuth Provider</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> netlify-cms-oauth-provider-infrastructure:targetDomain <span class="token punctuation">{</span><span class="token punctuation">{</span><span class="token string">"domain name of your oauth provider"</span><span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre>
+<ol start="5">
+<li>Set the Github Key and Secret (only do this if you want a personal test, the Github Key and Secret is now provided by the OAuth application in pulumi Github account)</li>
+</ol>
+<ul>
+<li>change the {YOUR_GITHUB_KEY} and {YOUR_GITHUB_SECRET} with the key and secret obtain from Step 1.</li>
+</ul>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> netlify-cms-oauth-provider-infrastructure:githubKey <span class="token punctuation">{</span><span class="token punctuation">{</span>YOUR_GITHUB_KEY<span class="token punctuation">}</span><span class="token punctuation">}</span>
+$ pulumi config <span class="token builtin class-name">set</span> --secret netlify-cms-oauth-provider-infrastructure:githubSecret
+$ <span class="token punctuation">{</span><span class="token punctuation">{</span>YOUR_GITHUB_SECRET<span class="token punctuation">}</span><span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li><code>--secret</code> tag is used to hash the secret so on the stack configuration yaml file it won't be shown</li>
+<li>Don't directly append the secret to the command like this <code>$ pulumi config set --secret netlify-cms-oauth-provider-infrastructure:githubKey {{YOUR_GITHUB_SECRET}}</code>
+because it might cause the secret be stored inside the command memory
+<ul>
+<li>Only specify the key without name and hit ENTER key, then you are able to type secret on next line(won't actually show the value)</li>
+</ul>
+</li>
+<li>To make sure if key and secret is right do</li>
+</ul>
+<pre class="language-bash"><code class="language-bash">$ pulumi config get netlify-cms-oauth-provider-infrastructure:githubKey
+$ pulumi config get netlify-cms-oauth-provider-infrastructure:githubSecret
+</code></pre>
+<h3 id="step-3-running-infrastructure"><a aria-hidden="true" class="anchor-heading" href="#step-3-running-infrastructure"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 3. Running Infrastructure</h3>
+<pre class="language-bash"><code class="language-bash">$ pulumi up
+</code></pre>
+<h3 id="step-4-config-cms"><a aria-hidden="true" class="anchor-heading" href="#step-4-config-cms"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Step 4. Config CMS</h3>
+<p>You also need to add <code>base_url</code> to the backend section of your netlify-cms's config file. </p>
+<p>Go to the cms repo which stores resource for CMS and on file public/config.yml add the base_url line with the oauth provider url</p>
+<pre><code>backend:
+  name: github
+  repo: user/repo   # Path to your Github repository
+  branch: master    # Branch to update
+  base_url: https://xxx # Path to ext auth provider
+</code></pre>
+<p>Then build use </p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">yarn</span> build
+</code></pre>
+<p>and go to the infrastructure folder and do pulumi up to update changes</p>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/dockerfile">Dockerfile</a></li>
+<li><a href="/assets/makefile">Makefile</a></li>
+<li><a href="/assets/go.mod">go.mod</a></li>
+<li><a href="/assets/go.sum">go.sum</a></li>
+<li><a href="/assets/main.go">main.go</a></li>
+</ul>
+<hr>
+<h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
+<ol>
+<li><a href="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms-oauth.infrastructure.html">Infrastructure</a></li>
+</ol><span id="navId" data="aws-ts-netlify-cms-and-oauth.cms-oauth"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/aws-ts-netlify-cms-and-oauth/cms-oauth/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

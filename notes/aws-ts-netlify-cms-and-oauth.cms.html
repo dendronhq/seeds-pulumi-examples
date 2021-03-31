@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Cms - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Cms - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Cms - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so/notes/c2ff66dd-b756-4729-a0e9-0ad284da7c4b.html">Aws Ts Netlify Cms and Oauth</a></li><li class="breadcrumb-nav-list-item">Cms</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Cms">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <h2 id="background-knowledges"><a aria-hidden="true" class="anchor-heading" href="#background-knowledges"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Background Knowledges</h2>
+<p>CMS stands for content management system, which facilitate creation and modification of digital content.</p>
+<p><a href="https://www.netlifycms.org/docs/intro/">Netlify CMS</a> is an <a href="https://github.com/netlify/netlify-cms">open-source</a> example implements this concept.  It works closely with static site generators and provides user interface for non-technical editors of webisite to edit the website content and submit the change to various types of storaging service including Github.</p>
+<p>Backends allows Netlify CMS to communicate with a service that stores content. Backends that Netlify CMS provides includes Git Gateway (Connect with Netlify), Github, GitLab, and Bitbucket.</p>
+<h1 id="about-cms-project"><a aria-hidden="true" class="anchor-heading" href="#about-cms-project"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>About CMS Project</h1>
+<p>This project is an CMS React App that using Netlify CMS as CMS provider and Github as backend. Orginally it provides a user interface for non-technical employees from Pulumi to edit <a href="https://github.com/pulumi/docs">Pulumi's website</a> (powered by <a href="https://gohugo.io">Hugo static site generator</a>).
+It is a good example for how to deploy Netlify CMS as a stand-alone React web application that is reading and make changes to another organization repository and deployed on AWS instead of Netlify.
+Special thanks to the template provided by <a href="https://github.com/ADARTA/netlify-cms-react-example">@talves</a> for converting the CMS to be a stand-alone React app that is not placed inside the target repository.</p>
+<h2 id="file-path"><a aria-hidden="true" class="anchor-heading" href="#file-path"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>File Path</h2>
+<ul>
+<li>.github/workflow
+<ul>
+<li>The implementation of Github Actions workflow</li>
+</ul>
+</li>
+<li>cms/infrastructure
+<ul>
+<li>The infrastructure of deploying cms app on AWS using Pulumi.</li>
+<li>index.ts contain the code for the Pulumi program</li>
+</ul>
+</li>
+<li>cms/public
+<ul>
+<li>config.yml is the Netlify CMS's configuration file</li>
+<li>favicon.ico the icon for CMS app website</li>
+<li>index.html the html for the web app to check</li>
+</ul>
+</li>
+<li>cms/Readme-Screenshots
+<ul>
+<li>The screen shots for this README file</li>
+</ul>
+</li>
+<li>cms/src
+<ul>
+<li>React content for this web app</li>
+</ul>
+</li>
+</ul>
+<h2 id="infrastructure"><a aria-hidden="true" class="anchor-heading" href="#infrastructure"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Infrastructure</h2>
+<p>The infrastructure folder contain Pulumi code of deploying this CMS app onto the AWS S3, speeding up using AWS CloudFront, and certificate creation using AWS Certificate Manager. The general idea is deploy the CMS application as a static website onto the AWS. We already have a <a href="https://github.com/pulumi/examples/tree/master/aws-ts-static-website">Pulumi's static website creation example</a> with explanation provided.</p>
+<p>The infrastructure requires three stack configuration properties: <code>pathToWebsiteContents</code>, <code>targetDomain</code>, <code>certificateArn</code>.</p>
+<ul>
+<li>pathToWebsiteContents
+<ul>
+<li>The path to the builded content of this React Website app.</li>
+<li>Run a yarn build will create a build folder which contains the builded file and we should pass the directory of the build folder to this variable.</li>
+<li>Passing build folder instead of the whole folder is to put a worked version onto AWS S3 bucket for CloudFront to look for</li>
+</ul>
+</li>
+<li>targetDomain
+<ul>
+<li>a target domain name that you wish to put into.</li>
+<li>we used a subdomain of a parent domain and the parent domain have to be alive on your AWS account's Route 53 console it would automatically create the subdomain for you</li>
+<li>this is also the site_domain you should put inside the cms/public/config.yml for Netlify CMS to read</li>
+</ul>
+</li>
+<li>certificateArn
+<ul>
+<li>This is optional.</li>
+<li>If you have already had a certificate inside the AWS's Certificate Manager for this CMS app, then put it's arn as the value for this variable</li>
+</ul>
+</li>
+</ul>
+<h3 id="assume-role-optional"><a aria-hidden="true" class="anchor-heading" href="#assume-role-optional"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Assume Role (Optional)</h3>
+<p>It is recommended that you use an IAM role with more permissions in the <em>target</em> AWS using a token for an IAM user in the <em>source</em> account. To do this, you could refer to the <a href="https://github.com/pulumi/examples/tree/master/aws-ts-assume-role">aws-ts-assume-role example</a> for more information. The example is available in multiple languages in our <a href="https://github.com/pulumi/examples">examples repostiory</a>.</p>
+<h2 id="substitution-for-netlify-identity-service-oauth-server"><a aria-hidden="true" class="anchor-heading" href="#substitution-for-netlify-identity-service-oauth-server"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Substitution for Netlify Identity Service: OAuth Server</h2>
+<p>Since we are deploying the CMS app on AWS instead of Netlify we need to provide our own server to do the OAuth <a href="https://oauth.net/2/grant-types/authorization-code/">authorization code grant flow</a>. So we also deployed an OAuth Server. Here's the official Netlify documentation on using <a href="https://www.netlifycms.org/docs/external-oauth-clients/">external OAuth clients</a>. In short, the OAuth server fetches the access token from GitHub API to use the CMS. The code for the OAuth Server is inside the <code>./cms-oauth</code> folder in the root directory of this example.</p>
+<p>After deploying the cms-oauth web app, we should also put the domain of the oauth-server we build in the cms/public/config.yml's base_url configuration</p>
+<h2 id="code-path"><a aria-hidden="true" class="anchor-heading" href="#code-path"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Code Path</h2>
+<ol>
+<li>
+<p>Since the CMS is implemented as a React app, the entry point is in <strong>public/index.html</strong> which includes multiple scripts and the div with id <code>root</code> for rendering the CMS component inside it.</p>
+</li>
+<li>
+<p>App.js then create NetlifyCMS component instance from <strong>src/components/NetlifyCMS</strong> folder.</p>
+</li>
+<li>
+<p><strong>src/components/NetlifyCMS/index.js</strong> specify the behavior for NetlifyCMS and we could register CMS custom templates, custom widget there. </p>
+</li>
+<li>
+<p><code>CMS.init()</code> will initialize CMS using <strong>public/config.yml</strong> which is the core of this app, which contains collection, backend settings, and other settings.</p>
+</li>
+</ol>
+<h2 id="development-details"><a aria-hidden="true" class="anchor-heading" href="#development-details"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Development Details</h2>
+<p>Now Github workflow was implemented. Directly push to master branch would automatically deploy cms.
+Open a new branch and commit to the new branch would only do a pulumi preview until merge, which you could see from the Github Actions. For testing:</p>
+<h3 id="local-development"><a aria-hidden="true" class="anchor-heading" href="#local-development"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Local Development</h3>
+<ol>
+<li>
+<p>Specify the <code>repo</code>, <code>site_domain</code> and <code>base_url</code> in the <code>cms/public/config.yml</code>'s backend block.
+<img src="Readme-Screenshots/cms-config-setings.jpg" alt="First Step: change cms config">
+<code>repo</code> is the target repo you would like CMS to view and make edits on
+<code>site_domain</code> is the domain name for the CMS web application
+<code>base_url</code> is the domain name for the OAuth server (deployed from the <code>cms-oauth</code> folder)</p>
+</li>
+<li>
+<p>To run the CMS app locally, run:</p>
+</li>
+</ol>
+<pre class="language-bash"><code class="language-bash"><span class="token function">yarn</span> start
+</code></pre>
+<p>It would automatically update if you made another change to <code>config.yml</code></p>
+<h3 id=""><a aria-hidden="true" class="anchor-heading" href="#"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a></h3>
+<ol>
+<li>Build the App</li>
+</ol>
+<pre class="language-bash"><code class="language-bash"><span class="token function">yarn</span> build
+</code></pre>
+<p>This would build the App and create a build folder under root directory. </p>
+<ol start="2">
+<li>Go to infrastructure folder config the Pulumi stack</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> infrastructure
+$ pulumi stack init website-cms
+$ pulumi config <span class="token builtin class-name">set</span> aws:region us-east-1
+$ pulumi config <span class="token builtin class-name">set</span> website-cms:pathToWebsiteContents <span class="token punctuation">..</span>/build
+$ pulumi config <span class="token builtin class-name">set</span> website-cms:targetDomain https://some-cms-domain.com
+<span class="token comment"># the targetDomain have to match what you put for site_domain inside the config file ./cms/public/config.yml</span>
+</code></pre>
+<ul>
+<li>
+<p>path to website contents would specify the folder generated by <code>yarn build</code> and upload that folder to S3</p>
+</li>
+<li>
+<p>target domain is the domain for the app</p>
+</li>
+</ul>
+<ol start="4">
+<li>Run pulumi up</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ pulumi up
+</code></pre>
+<h2 id="cms-ui-introduction"><a aria-hidden="true" class="anchor-heading" href="#cms-ui-introduction"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>CMS UI Introduction</h2>
+<blockquote>
+<p>Before you can login into the CMS app, you must complete the steps in the OAuth server to either run it locally or deploy it to the cloud.</p>
+</blockquote>
+<ol>
+<li>
+<p>Open up a server with working example with</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">yarn</span> start
+</code></pre>
+<p>it will automatically updated the page with any changes.</p>
+</li>
+<li>
+<p>Login using Github account.</p>
+<p><img src="Readme-Screenshots/login.jpg" alt="login page"></p>
+</li>
+<li>
+<p>Click on any page you want to edit at collections page or add new page using the "New Webinar/Event Page" button</p>
+<p><img src="Readme-Screenshots/collection_page.jpg" alt="collection page"></p>
+<p>Fill in in specified field at the entry page</p>
+<p><img src="Readme-Screenshots/entery_page.jpg" alt="entry page"></p>
+</li>
+<li>
+<p>Click <strong>Save</strong> button at the top of the editing page would </p>
+</li>
+</ol>
+<ul>
+<li>Create a new branch in your target repo</li>
+<li>Open a pull request </li>
+<li>Make initial commit to the branch</li>
+<li>Adds tag to the PR that indicates that it is a "draft"</li>
+<li>Adds a card in the drafts column on the editorial workflow page (more on the workflow UI below)</li>
+</ul>
+<ol start="5">
+<li>
+<p>Click the Back button to go back to the collections page and clicking the <strong>Workflow</strong> button would bring out the editorial workflow</p>
+<p><img src="Readme-Screenshots/Workflow_button.jpg" alt="workflow button"></p>
+<p><img src="Readme-Screenshots/Editorial_Workflow.jpg" alt="Editorial Workflow"></p>
+</li>
+<li>
+<p>Moving a card from the "Drafts" column to the "In Review" column will remove the "draft" tag and apply an "in-review" tag on the PR</p>
+</li>
+<li>
+<p>Similarly, moving a card from "In Review" to "Ready" columns would change the PR tag to "ready"</p>
+</li>
+<li>
+<p>Hover on the card in "Ready" column would show <strong>Publish change</strong> button, which would merge the PR.</p>
+</li>
+</ol>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/package.json">package.json</a></li>
+</ul>
+<hr>
+<h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
+<ol>
+<li><a href="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms.infrastructure.html">Infrastructure</a></li>
+<li><a href="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms.public.html">Public</a></li>
+<li><a href="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms.readme-screenshots.html">Readme Screenshots</a></li>
+<li><a href="https://pulumi.dendron.so/notes/aws-ts-netlify-cms-and-oauth.cms.src.html">Src</a></li>
+</ol><span id="navId" data="aws-ts-netlify-cms-and-oauth.cms"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/aws-ts-netlify-cms-and-oauth/cms/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

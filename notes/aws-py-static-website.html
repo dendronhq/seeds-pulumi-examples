@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Aws Py Static Website - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/aws-py-static-website.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/aws-py-static-website.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/aws-py-static-website.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Aws Py Static Website - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Aws Py Static Website - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Aws Py Static Website</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Aws Py Static Website">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="secure-static-website-using-amazon-s3-cloudfront-route53-and-certificate-manager"><a aria-hidden="true" class="anchor-heading" href="#secure-static-website-using-amazon-s3-cloudfront-route53-and-certificate-manager"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Secure Static Website Using Amazon S3, CloudFront, Route53, and Certificate Manager</h1>
+<p>This example serves a static website using Python and AWS.</p>
+<p>This sample uses the following AWS products:</p>
+<ul>
+<li><a href="https://aws.amazon.com/s3/">Amazon S3</a> is used to store the website's contents.</li>
+<li><a href="https://aws.amazon.com/cloudfront/">Amazon CloudFront</a> is the CDN serving content.</li>
+<li><a href="https://aws.amazon.com/route53/">Amazon Route53</a> is used to set up the DNS for the website.</li>
+<li><a href="https://aws.amazon.com/certificate-manager/">Amazon Certificate Manager</a> is used for securing things via HTTPS.</li>
+</ul>
+<h2 id="getting-started"><a aria-hidden="true" class="anchor-heading" href="#getting-started"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Getting Started</h2>
+<p>Configure the Pulumi program. There are several configuration settings that need to be
+set:</p>
+<ul>
+<li><code>targetDomain</code> - The domain to serve the website at (e.g. <a href="http://www.example.com">www.example.com</a>). It is assumed that
+the parent domain (example.com) is a Route53 Hosted Zone in the AWS account you are running the
+Pulumi program in.</li>
+<li><code>pathToWebsiteContents</code> - Directory of the website's contents. e.g. the <code>./www</code> folder.</li>
+</ul>
+<h2 id="deploying-and-running-the-program"><a aria-hidden="true" class="anchor-heading" href="#deploying-and-running-the-program"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Deploying and running the program</h2>
+<p>Note: some values in this example will be different from run to run.  These values are indicated
+with <code>***</code>.</p>
+<ol>
+<li>
+<p>Create a new stack:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack init website-testing
+</code></pre>
+</li>
+<li>
+<p>Set the AWS region:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> aws:region us-west-2
+</code></pre>
+</li>
+<li>
+<p>Run <code>pulumi up</code> to preview and deploy changes.  After the preview is shown you will be
+prompted if you want to continue or not.</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi up
+Previewing update <span class="token punctuation">(</span>example<span class="token punctuation">)</span>:
+    Type                              Name                                      Plan
++   pulumi:pulumi:Stack               static-website-example                    create
++   ├─ pulumi:providers:aws           east                                      create
++   ├─ aws:s3:Bucket                  requestLogs                               create
++   ├─ aws:s3:Bucket                  contentBucket                             create
++   │  ├─ aws:s3:BucketObject         <span class="token number">404</span>.html                                  create
++   │  └─ aws:s3:BucketObject         index.html                                create
++   ├─ aws:acm:Certificate            certificate                               create
++   ├─ aws:route53:Record             ***-validation                            create
++   ├─ aws:acm:CertificateValidation  certificateValidation                     create
++   ├─ aws:cloudfront:Distribution    cdn                                       create
++   └─ aws:route53:Record             ***                                       create
+</code></pre>
+</li>
+<li>
+<p>To see the resources that were created, run <code>pulumi stack output</code>:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack output
+Current stack outputs <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>:
+    OUTPUT                           VALUE
+    cloudfront_domain                ***.cloudfront.net
+    content_bucket_url               s3://***
+    content_bucket_website_endpoint  ***.s3-website-us-west-2.amazonaws.com
+    target_domain_endpoint           https://***/
+</code></pre>
+</li>
+<li>
+<p>To see that the S3 objects exist, you can either use the AWS Console or the AWS CLI:</p>
+<pre class="language-bash"><code class="language-bash">$ aws s3 <span class="token function">ls</span> <span class="token variable"><span class="token variable">$(</span>pulumi stack output content_bucket_url<span class="token variable">)</span></span>
+<span class="token number">2020</span>-02-21 <span class="token number">16</span>:58:48        <span class="token number">262</span> <span class="token number">404</span>.html
+<span class="token number">2020</span>-02-21 <span class="token number">16</span>:58:48        <span class="token number">394</span> index.html
+</code></pre>
+</li>
+<li>
+<p>Open a browser to the target domain endpoint from above to see your beautiful static website. (Since we don't wait for the CloudFront distribution to completely sync, you may have to wait a few minutes)</p>
+</li>
+<li>
+<p>To clean up resources, run <code>pulumi destroy</code> and answer the confirmation question at the prompt.</p>
+</li>
+</ol>
+<h2 id="troubleshooting"><a aria-hidden="true" class="anchor-heading" href="#troubleshooting"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Troubleshooting</h2>
+<h3 id="scary-https-warning"><a aria-hidden="true" class="anchor-heading" href="#scary-https-warning"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Scary HTTPS Warning</h3>
+<p>When you create an S3 bucket and CloudFront distribution shortly after one another, you'll see
+what looks to be HTTPS configuration issues. This has to do with the replication delay between
+S3, CloudFront, and the world-wide DNS system.</p>
+<p>Just wait 15 minutes or so, and the error will go away. Be sure to refresh in an incognito
+window, which will avoid any local caches your browser might have.</p>
+<h3 id="preconditionfailed-the-request-failed-because-it-didnt-meet-the-preconditions"><a aria-hidden="true" class="anchor-heading" href="#preconditionfailed-the-request-failed-because-it-didnt-meet-the-preconditions"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>"PreconditionFailed: The request failed because it didn't meet the preconditions"</h3>
+<p>Sometimes updating the CloudFront distribution will fail with:</p>
+<pre class="language-text"><code class="language-text">"PreconditionFailed: The request failed because it didn't meet the preconditions in one or more
+request-header fields."
+</code></pre>
+<p>This is caused by CloudFront confirming the ETag of the resource before applying any updates.
+ETag is essentially a "version", and AWS is rejecting any requests that are trying to update
+any version but the "latest".</p>
+<p>This error will occur when the state of the ETag gets out of sync between the Pulumi Service
+and AWS. (Which can happen when inspecting the CloudFront distribution in the AWS console.)</p>
+<p>You can fix this by running <code>pulumi refresh</code> to pickup the newer ETag values.</p>
+<h2 id="deployment-speed"><a aria-hidden="true" class="anchor-heading" href="#deployment-speed"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Deployment Speed</h2>
+<p>This example creates an <code>aws.S3.BucketObject</code> for every file served from the website. When deploying
+large websites, that can lead to very long updates as every individual file is checked for any
+changes.</p>
+<p>It may be more efficient to not manage individual files using Pulumi and instead just use the
+AWS CLI to sync local files with the S3 bucket directly.</p>
+<p>Remove the call to <code>crawlDirectory</code> and run <code>pulumi up</code>. Pulumi will then delete the contents
+of the S3 bucket, and no longer manage their contents. Then do a bulk upload outside of Pulumi
+using the AWS CLI.</p>
+<pre class="language-bash"><code class="language-bash">aws s3 <span class="token function">sync</span> ./www/ s3://example-bucket/
+</code></pre>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/__main__.py"><strong>main</strong>.py</a></li>
+<li><a href="/assets/requirements.txt">requirements.txt</a></li>
+</ul>
+<hr>
+<h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
+<ol>
+<li><a href="https://pulumi.dendron.so/notes/aws-py-static-website.www.html">Www</a></li>
+</ol><span id="navId" data="aws-py-static-website"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/aws-py-static-website/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

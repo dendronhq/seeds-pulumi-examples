@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Aws Ts Voting App - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/aws-ts-voting-app.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/aws-ts-voting-app.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/aws-ts-voting-app.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Aws Ts Voting App - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Aws Ts Voting App - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Aws Ts Voting App</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Aws Ts Voting App">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="voting-app-using-redis-and-flask"><a aria-hidden="true" class="anchor-heading" href="#voting-app-using-redis-and-flask"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Voting app Using Redis and Flask</h1>
+<p>A simple voting app that uses Redis for a data store and a Python Flask app for the frontend. The example has been ported from <a href="https://github.com/Azure-Samples/azure-voting-app-redis">https://github.com/Azure-Samples/azure-voting-app-redis</a>.</p>
+<p>The example shows how easy it is to deploy containers into production and to connect them to one another. Since the example defines a custom container, Pulumi does the following:</p>
+<ul>
+<li>Builds the Docker image</li>
+<li>Provisions AWS Container Registry (ECR) instance</li>
+<li>Pushes the image to the ECR instance</li>
+<li>Creates a new ECS task definition, pointing to the ECR image definition</li>
+</ul>
+<h2 id="prerequisites"><a aria-hidden="true" class="anchor-heading" href="#prerequisites"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Prerequisites</h2>
+<p>To use this example, make sure <a href="https://docs.docker.com/engine/installation/">Docker</a> is installed and running.</p>
+<h2 id="deploying-and-running-the-program"><a aria-hidden="true" class="anchor-heading" href="#deploying-and-running-the-program"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Deploying and running the program</h2>
+<h3 id="configure-the-deployment"><a aria-hidden="true" class="anchor-heading" href="#configure-the-deployment"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Configure the deployment</h3>
+<p>Note: some values in this example will be different from run to run.  These values are indicated
+with <code>***</code>.</p>
+<ol>
+<li>
+<p>Login via <code>pulumi login</code>.</p>
+</li>
+<li>
+<p>Create a new stack:</p>
+<pre><code>$ pulumi stack init voting-app-testing
+</code></pre>
+</li>
+<li>
+<p>Set AWS as the provider:</p>
+<pre><code>$ pulumi config set cloud:provider aws
+</code></pre>
+</li>
+<li>
+<p>Configure Pulumi to use an AWS region that supports Fargate, which is currently only available in <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-2</code>, and <code>eu-west-1</code>:</p>
+<pre><code>$ pulumi config set aws:region us-west-2
+</code></pre>
+</li>
+<li>
+<p>Set a value for the Redis password. The value can be an encrypted secret, specified with the <code>--secret</code> flag. If this flag is not provided, the value will be saved as plaintext in <code>Pulumi.testing.yaml</code> (since <code>testing</code> is the current stack name).</p>
+<pre><code>$ pulumi config set --secret redisPassword S3cr37Password
+</code></pre>
+</li>
+</ol>
+<h3 id="install-dependencies"><a aria-hidden="true" class="anchor-heading" href="#install-dependencies"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Install dependencies</h3>
+<ol>
+<li>Restore NPM modules via <code>npm install</code> or <code>yarn install</code>.</li>
+</ol>
+<h3 id="preview-and-deploy"><a aria-hidden="true" class="anchor-heading" href="#preview-and-deploy"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Preview and deploy</h3>
+<ol>
+<li>
+<p>Ensure the Docker daemon is running on your machine, then preview and deploy the program with <code>pulumi up</code>. The program deploys 24 resources and takes about 10 minutes to complete.</p>
+</li>
+<li>
+<p>View the stack output properties via <code>pulumi stack output</code>. The stack output property <code>frontendUrl</code> is the URL and port of the deployed app:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack output frontendURL
+***.elb.us-west-2.amazonaws.com
+</code></pre>
+</li>
+<li>
+<p>In a browser, navigate to the URL for <code>frontendURL</code>. You should see the voting app webpage.</p>
+<p><img src="./voting-app-webpage.png" alt="Voting app screenshot"></p>
+</li>
+</ol>
+<h3 id="delete-resources"><a aria-hidden="true" class="anchor-heading" href="#delete-resources"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Delete resources</h3>
+<p>When you're done, run <code>pulumi destroy</code> to delete the program's resources:</p>
+<pre><code>$ pulumi destroy
+This will permanently destroy all resources in the 'testing' stack!
+Please confirm that this is what you'd like to do by typing ("testing"): testing
+</code></pre>
+<h2 id="about-the-code"><a aria-hidden="true" class="anchor-heading" href="#about-the-code"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>About the code</h2>
+<p>At the start of the program, the following lines retrieve the value for the Redis password by reading a <a href="https://www.pulumi.com/docs/reference/config/">configuration value</a>. This is the same value that was set above with the command <code>pulumi config set redisPassword &#x3C;value></code>:</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">let</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">pulumi</span><span class="token punctuation">.</span><span class="token method function property-access"><span class="token maybe-class-name">Config</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> redisPassword <span class="token operator">=</span> config<span class="token punctuation">.</span><span class="token keyword">require</span><span class="token punctuation">(</span><span class="token string">"redisPassword"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>In the program, the value can be used like any other variable.</p>
+<h3 id="resources"><a aria-hidden="true" class="anchor-heading" href="#resources"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Resources</h3>
+<p>The program provisions two top-level resources with the following commands:</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">let</span> redisCache <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">awsx</span><span class="token punctuation">.</span><span class="token property-access">ecs</span><span class="token punctuation">.</span><span class="token method function property-access"><span class="token maybe-class-name">FargateService</span></span><span class="token punctuation">(</span><span class="token string">"voting-app-cache"</span><span class="token punctuation">,</span> <span class="token spread operator">...</span> <span class="token punctuation">)</span>
+<span class="token keyword">let</span> frontend <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">awsx</span><span class="token punctuation">.</span><span class="token property-access">ecs</span><span class="token punctuation">.</span><span class="token method function property-access"><span class="token maybe-class-name">FargateService</span></span><span class="token punctuation">(</span><span class="token string">"voting-app-frontend"</span><span class="token punctuation">,</span> <span class="token spread operator">...</span> <span class="token punctuation">)</span>
+</code></pre>
+<p>The definition of <code>redisCache</code> uses the <code>image</code> property of <code>FargateService.taskDefinitionArgs</code> to point to an existing Docker image. In this case, this is the image <code>redis</code> at tag <code>alpine</code> on Docker Hub. The <code>redisPassword</code> variable is passed to the startup command for this image.</p>
+<p>The definition of <code>frontend</code> is more interesting, as it uses <code>image</code> property of <code>FargateService.taskDefinitionArgs</code> to point to a folder with a Dockerfile, which in this case is a Python Flask app. Pulumi automatically invokes <code>docker build</code> for you and pushes the container to ECR.</p>
+<p>So that the <code>frontend</code> container can connect to <code>redisCache</code>, the environment variables <code>REDIS</code>, <code>REDIS_PORT</code> are defined. Using the <code>redisListenre.endpoint</code> property, it's easy to declare the connection between the two containers.</p>
+<p>The Flask app uses these environment variables to connect to the Redis cache container. See the following in <a href="frontend/app/main.py"><code>frontend/app/main.py</code></a>:</p>
+<pre class="language-python"><code class="language-python">redis_server <span class="token operator">=</span>   os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'REDIS'</span><span class="token punctuation">]</span>
+redis_port <span class="token operator">=</span>     os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'REDIS_PORT'</span><span class="token punctuation">]</span>
+redis_password <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'REDIS_PWD'</span><span class="token punctuation">]</span>
+</code></pre>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/index.ts">index.ts</a></li>
+<li><a href="/assets/package.json">package.json</a></li>
+<li><a href="/assets/tsconfig.json">tsconfig.json</a></li>
+<li><a href="/assets/voting-app-webpage.png">voting-app-webpage.png</a></li>
+</ul>
+<hr>
+<h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
+<ol>
+<li><a href="https://pulumi.dendron.so/notes/aws-ts-voting-app.frontend.html">Frontend</a></li>
+</ol><span id="navId" data="aws-ts-voting-app"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/aws-ts-voting-app/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

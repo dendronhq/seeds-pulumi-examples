@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Crd2pulumi Crontabs - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/crd2pulumi-crontabs.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/crd2pulumi-crontabs.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/crd2pulumi-crontabs.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Crd2pulumi Crontabs - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Crd2pulumi Crontabs - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Crd2pulumi Crontabs</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Crd2pulumi Crontabs">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="generating-crontab-customresources-with-crd2pulumi"><a aria-hidden="true" class="anchor-heading" href="#generating-crontab-customresources-with-crd2pulumi"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Generating CronTab CustomResources with <code>crd2pulumi</code></h1>
+<p>This example generates a strongly-typed CronTab CustomResource from the Kubernetes CRD specified in <code>crontabs.yaml</code> in TypeScript and Go. Afterwards, we'll use this generated code with Pulumi to deploy the CRD and create an instance. For more documentation on <code>crd2pulumi</code>, check out the <a href="https://github.com/pulumi/pulumi-kubernetes/tree/master/provider/cmd/crd2pulumi">project's GitHub page</a>.</p>
+<h2 id="setting-up-crd2pulumi"><a aria-hidden="true" class="anchor-heading" href="#setting-up-crd2pulumi"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Setting up crd2pulumi</h2>
+<p>We'll set up <code>crd2pulumi</code> by downloading the latest binary. If you're interested in building <code>crd2pulumi</code> itself, you can find instructions in the project <a href="https://github.com/pulumi/pulumi-kubernetes/tree/master/provider/cmd/crd2pulumi">README</a>.</p>
+<p>You can find the download links for the <a href="https://github.com/pulumi/pulumi-kubernetes/releases/tag/crd2pulumi/v1.0.0">latest binaries on GitHub</a>. For this example we're using <code>darwin-amd64</code>, so if you're using a different OS, make sure to use the correct download link.</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">wget</span> https://github.com/pulumi/pulumi-kubernetes/releases/download/crd2pulumi%2Fv1.0.0/crd2pulumi-darwin-amd64.tar.gz
+$ <span class="token function">tar</span> -xvf crd2pulumi-darwin-amd64.tar.gz
+$ <span class="token function">mv</span> ./releases/crd2pulumi-darwin-amd64/crd2pulumi ./crd2pulumi
+</code></pre>
+<h2 id="running-the-app-typescript"><a aria-hidden="true" class="anchor-heading" href="#running-the-app-typescript"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Running the App (TypeScript)</h2>
+<p>Follow the steps in <a href="https://www.pulumi.com/docs/get-started/install/">Pulumi Installation and Setup</a> and <a href="https://www.pulumi.com/docs/intro/cloud-providers/kubernetes/setup/">Configuring Pulumi
+Kubernetes</a> to get setup with Pulumi and Kubernetes.</p>
+<p>Install dependencies:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> kubernetes-ts-crontabs
+$ <span class="token function">npm</span> <span class="token function">install</span>
+</code></pre>
+<p>Create a new stack:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack init dev
+</code></pre>
+<p>At first, the provided <code>index.ts</code> program shouldn't run, since we haven't actually generated the <code>./crontabs</code> code yet.</p>
+<blockquote>
+<p><code>crontabs.yaml</code> is a k8s CRD that specifies a CronTab CustomResource. It's also used as an example in the <a href="https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/">Kubernetes Documentation</a>.</p>
+</blockquote>
+<p>Generate the strongly-typed CronTab resource in the current directory:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token punctuation">..</span>/crd2pulumi nodejs <span class="token punctuation">..</span>/crontabs.yaml <span class="token builtin class-name">.</span>
+</code></pre>
+<p>This should generate a <code>./crontabs</code> folder, where we can import the useful classes <code>v1.CronTab</code> and <code>NewCronTabDefinition</code>.</p>
+<blockquote>
+<p>This saves us a lot of time, since we can create the CRD in a single line and get typed arguments in the CustomResource. If you're curious, the comments contain the code that we would've written without <code>crd2pulumi</code>.</p>
+</blockquote>
+<p>Perform the deployment:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi up
+Previewing update <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+ 	Type                                                     	Name               	Plan
+ 	pulumi:pulumi:Stack                                      	examples-dev
+ +   ├─ kubernetes:stable.example.com:CronTab                 	my-new-cron-object 	create
+ +   └─ kubernetes:apiextensions.k8s.io:CustomResourceDefinition  my-crontab-definition  create
+Resources:
+	+ <span class="token number">2</span> to create
+	<span class="token number">1</span> unchanged
+Do you want to perform this update? <span class="token function">yes</span>
+Updating <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+ 	Type                                                     	Name               	Status
+ 	pulumi:pulumi:Stack                                      	examples-dev
+ +   ├─ kubernetes:stable.example.com:CronTab                 	my-new-cron-object 	created
+ +   └─ kubernetes:apiextensions.k8s.io:CustomResourceDefinition  my-crontab-definition  created
+Outputs:
+	urn: <span class="token string">"urn:pulumi:dev::examples::kubernetes:stable.example.com/v1:CronTab::my-new-cron-object"</span>
+Resources:
+	+ <span class="token number">2</span> created
+	<span class="token number">1</span> unchanged
+Duration: 17s
+</code></pre>
+<p>It looks like both the CronTab definition and instance were both created! Finally, let's verify that they were created
+by manually viewing the raw YAML data:</p>
+<pre class="language-bash"><code class="language-bash">$ kubectl get ct -o yaml
+</code></pre>
+<pre class="language-yaml"><code class="language-yaml"><span class="token punctuation">-</span> <span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> stable.example.com/v1
+  <span class="token key atrule">kind</span><span class="token punctuation">:</span> CronTab
+  <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+	<span class="token key atrule">annotations</span><span class="token punctuation">:</span>
+  	<span class="token key atrule">kubectl.kubernetes.io/last-applied-configuration</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+    	{"apiVersion":"stable.example.com/v1","kind":"CronTab","metadata":{"labels":{"app.kubernetes.io/managed-by":"pulumi"},"name":"my-new-cron-object"},"spec":{"cronSpec":"* * * * */5","image":"my-awesome-cron-image"}}</span>
+	<span class="token key atrule">creationTimestamp</span><span class="token punctuation">:</span> <span class="token string">"2020-08-10T09:50:38Z"</span>
+	<span class="token key atrule">generation</span><span class="token punctuation">:</span> <span class="token number">1</span>
+	<span class="token key atrule">labels</span><span class="token punctuation">:</span>
+  	<span class="token key atrule">app.kubernetes.io/managed-by</span><span class="token punctuation">:</span> pulumi
+	<span class="token key atrule">name</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>new<span class="token punctuation">-</span>cron<span class="token punctuation">-</span>object
+	<span class="token key atrule">namespace</span><span class="token punctuation">:</span> default
+	<span class="token key atrule">resourceVersion</span><span class="token punctuation">:</span> <span class="token string">"1658962"</span>
+	<span class="token key atrule">selfLink</span><span class="token punctuation">:</span> /apis/stable.example.com/v1/namespaces/default/crontabs/my<span class="token punctuation">-</span>new<span class="token punctuation">-</span>cron<span class="token punctuation">-</span>object
+	<span class="token key atrule">uid</span><span class="token punctuation">:</span> 5e2c56a2<span class="token punctuation">-</span>7332<span class="token punctuation">-</span>49cf<span class="token punctuation">-</span>b0fc<span class="token punctuation">-</span>211a0892c3d5
+  <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+	<span class="token key atrule">cronSpec</span><span class="token punctuation">:</span> <span class="token string">'* * * * */5'</span>
+	<span class="token key atrule">image</span><span class="token punctuation">:</span> my<span class="token punctuation">-</span>awesome<span class="token punctuation">-</span>cron<span class="token punctuation">-</span>image
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> List
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">resourceVersion</span><span class="token punctuation">:</span> <span class="token string">""</span>
+  <span class="token key atrule">selfLink</span><span class="token punctuation">:</span> <span class="token string">""</span>
+</code></pre>
+<p>Let's destroy the CRD and CustomResource object so we can re-create them in Go.</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi destroy
+Previewing destroy <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+     Type                                                         Name                        Plan       
+ -   pulumi:pulumi:Stack                                          kubernetes-go-crontabs-dev  delete     
+ -   ├─ kubernetes:stable.example.com:CronTab                     my-new-cron-object          delete     
+ -   └─ kubernetes:apiextensions.k8s.io:CustomResourceDefinition  cronTabDef                  delete     
+ 
+Outputs:
+  - urn: <span class="token string">"urn:pulumi:dev::kubernetes-go-crontabs::kubernetes:stable.example.com/v1:CronTab::my-new-cron-object"</span>
+
+Resources:
+    - <span class="token number">3</span> to delete
+
+Do you want to perform this destroy? <span class="token function">yes</span>
+Destroying <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+     Type                                                         Name                        Status      
+ -   pulumi:pulumi:Stack                                          kubernetes-go-crontabs-dev  deleted     
+ -   ├─ kubernetes:stable.example.com:CronTab                     my-new-cron-object          deleted     
+ -   └─ kubernetes:apiextensions.k8s.io:CustomResourceDefinition  cronTabDef                  deleted     
+ 
+Outputs:
+  - urn: <span class="token string">"urn:pulumi:dev::kubernetes-go-crontabs::kubernetes:stable.example.com/v1:CronTab::my-new-cron-object"</span>
+
+Resources:
+    - <span class="token number">3</span> deleted
+
+Duration: 5s
+
+The resources <span class="token keyword">in</span> the stack have been deleted, but the <span class="token function">history</span> and configuration associated with the stack are still maintained. 
+If you want to remove the stack completely, run <span class="token string">'pulumi stack rm dev'</span><span class="token builtin class-name">.</span>
+</code></pre>
+<h2 id="running-the-app-go"><a aria-hidden="true" class="anchor-heading" href="#running-the-app-go"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Running the App (Go)</h2>
+<p>First, if you haven't already, <a href="https://golang.org/doc/install">install Go</a>. Then create a new stack:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> kubernetes-go-crontabs
+$ pulumi stack init dev
+</code></pre>
+<p>Like before, <code>main.go</code> shouldn't compile since we haven't generated the <code>crontabs</code> module yet. Let's do that:</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token punctuation">..</span>/crd2pulumi go <span class="token punctuation">..</span>/crontabs.yaml <span class="token builtin class-name">.</span>
+</code></pre>
+<p>This creates a <code>crontabs/v1</code> module in the current directory, which contains the useful constructor <code>NewCronTab()</code>. </p>
+<blockquote>
+<p>If you're curious, the commented code is what we would've had to write without <code>crd2pulumi</code>. Previously we would have had to input the <code>Spec</code> arguments into a generic <code>map[string]interface{}</code> with zero type-checking.</p>
+</blockquote>
+<p>Perform the deployment:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi up --yes
+Previewing update <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+     Type                                                         Name                        Plan       
+ +   pulumi:pulumi:Stack                                          kubernetes-go-crontabs-dev  create     
+ +   ├─ kubernetes:stable.example.com:CronTab                     my-new-cron-object          create     
+ +   └─ kubernetes:apiextensions.k8s.io:CustomResourceDefinition  cronTabDef                  create     
+ 
+Resources:
+    + <span class="token number">3</span> to create
+
+Updating <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+     Type                                                         Name                        Status      
+ +   pulumi:pulumi:Stack                                          kubernetes-go-crontabs-dev  created     
+ +   ├─ kubernetes:stable.example.com:CronTab                     my-new-cron-object          created     
+ +   └─ kubernetes:apiextensions.k8s.io:CustomResourceDefinition  cronTabDef                  created     
+ 
+Outputs:
+    urn: <span class="token string">"urn:pulumi:dev::kubernetes-go-crontabs::kubernetes:stable.example.com/v1:CronTab::my-new-cron-object"</span>
+
+Resources:
+    + <span class="token number">3</span> created
+
+Duration: 10s
+</code></pre>
+<p>Like before, you can run <code>kubectl get ct -o yaml</code> to verify that the CronTab object was actually created. Before we leave, let's remove everything we have created:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi destroy --yes
+Previewing destroy <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+     Type                                                         Name                        Plan       
+ -   pulumi:pulumi:Stack                                          kubernetes-go-crontabs-dev  delete     
+ -   ├─ kubernetes:stable.example.com:CronTab                     my-new-cron-object          delete     
+ -   └─ kubernetes:apiextensions.k8s.io:CustomResourceDefinition  cronTabDef                  delete     
+ 
+Outputs:
+  - urn: <span class="token string">"urn:pulumi:dev::kubernetes-go-crontabs::kubernetes:stable.example.com/v1:CronTab::my-new-cron-object"</span>
+
+Resources:
+    - <span class="token number">3</span> to delete
+
+Destroying <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+     Type                                                         Name                        Status      
+ -   pulumi:pulumi:Stack                                          kubernetes-go-crontabs-dev  deleted     
+ -   ├─ kubernetes:stable.example.com:CronTab                     my-new-cron-object          deleted     
+ -   └─ kubernetes:apiextensions.k8s.io:CustomResourceDefinition  cronTabDef                  deleted     
+ 
+Outputs:
+  - urn: <span class="token string">"urn:pulumi:dev::kubernetes-go-crontabs::kubernetes:stable.example.com/v1:CronTab::my-new-cron-object"</span>
+
+Resources:
+    - <span class="token number">3</span> deleted
+
+Duration: 3s
+</code></pre>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/crontab.yaml">crontab.yaml</a></li>
+</ul>
+<hr>
+<h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
+<ol>
+<li><a href="https://pulumi.dendron.so/notes/crd2pulumi-crontabs.kubernetes-go-crontabs.html">Kubernetes Go Crontabs</a></li>
+<li><a href="https://pulumi.dendron.so/notes/crd2pulumi-crontabs.kubernetes-ts-crontabs.html">Kubernetes Ts Crontabs</a></li>
+</ol><span id="navId" data="crd2pulumi-crontabs"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/crd2pulumi-crontabs/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

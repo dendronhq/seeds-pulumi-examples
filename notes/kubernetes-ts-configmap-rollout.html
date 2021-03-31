@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Kubernetes Ts Configmap Rollout - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/kubernetes-ts-configmap-rollout.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/kubernetes-ts-configmap-rollout.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/kubernetes-ts-configmap-rollout.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Kubernetes Ts Configmap Rollout - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Kubernetes Ts Configmap Rollout - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Kubernetes Ts Configmap Rollout</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Kubernetes Ts Configmap Rollout">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="app-rollout-via-configmap-data-change"><a aria-hidden="true" class="anchor-heading" href="#app-rollout-via-configmap-data-change"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>App Rollout via ConfigMap Data Change</h1>
+<p>Uses nginx to reverse-proxy traffic to <code>pulumi.github.io</code>. The nginx configuration is contained in
+the file <code>default.conf</code> in this directory; this program reads that file and puts it in a
+<code>ConfigMap</code>. Hence, changing data in that file will cause register as a change in the <code>ConfigMap</code>'s
+data, which will trigger a rollout of the nginx <code>Deployment</code>.</p>
+<p><img src="images/rollout.gif" alt="configmapRollout" title="ConfigMap-induced Rollout"></p>
+<h2 id="running-the-app"><a aria-hidden="true" class="anchor-heading" href="#running-the-app"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Running the App</h2>
+<p>Follow the steps in <a href="https://www.pulumi.com/docs/get-started/install/">Pulumi Installation and Setup</a> and
+<a href="https://www.pulumi.com/docs/intro/cloud-providers/kubernetes/setup/">Configuring Pulumi Kubernetes</a> to
+get setup with Pulumi and Kubernetes.</p>
+<p>Install dependencies:</p>
+<pre class="language-sh"><code class="language-sh">npm install
+</code></pre>
+<p>Create a new stack:</p>
+<pre class="language-sh"><code class="language-sh">$ pulumi stack init
+Enter a stack name: configmap-rollout-dev
+</code></pre>
+<p>This example will attempt to expose the <code>nginx</code> deployment to the Internet with
+a <code>Service</code> of type <code>LoadBalancer</code>. Since minikube does not support
+<code>LoadBalancer</code>, the application already knows to use type <code>ClusterIP</code> instead;
+all you need to do is to tell it whether you're deploying to minikube:</p>
+<pre class="language-sh"><code class="language-sh">pulumi config set isMinikube &#x3C;value>
+</code></pre>
+<p>Perform the deployment:</p>
+<pre class="language-sh"><code class="language-sh">$ pulumi up
+Updating stack 'configmap-rollout-dev'
+Performing changes:
+
+     Type                           Name                                     Status      Info
+ +   pulumi:pulumi:Stack            configmap-rollout-configmap-rollout-dev  created
+ +   ├─ kubernetes:core:ConfigMap   nginx                                    created
+ +   ├─ kubernetes:apps:Deployment  nginx                                    created
+ +   └─ kubernetes:core:Service     nginx                                    created
+
+---outputs:---
+frontendIp: "35.193.210.254"
+
+info: 4 changes performed:
+    + 4 resources created
+Update duration: 49.612528861s
+
+Permalink: https://app.pulumi.com/hausdorff/configmap-rollout-dev/updates/1
+</code></pre>
+<p>We can see here in the <code>---outputs:---</code> section that our proxy was allocated a public IP, in this
+case <code>35.193.210.254</code>. It is exported with a stack output variable, <code>frontendIp</code>. We can use <code>curl</code>
+and <code>grep</code> to retrieve the <code>&#x3C;title></code> of the site the proxy points at.</p>
+<pre class="language-sh"><code class="language-sh">$ curl -sL $(pulumi stack output frontendIp):80 | grep -C 1 "&#x3C;title>"
+
+    &#x3C;title>Pulumi. Serverless // Containers // Infrastructure // Cloud // DevOps&#x3C;/title>
+</code></pre>
+<p>Now, open <code>default.conf</code> and change <code>.node.server</code> and <code>.server.location.proxy_set_header</code> to point
+at <code>google.com</code>. If you're on macOS you can run <code>sed -i bak "s/pulumi.github.io/google.com/g" default.conf</code></p>
+<p>The result should look like this:</p>
+<pre class="language-conf"><code class="language-conf">upstream node {
+  server google.com;
+}
+server {
+  listen                  80;
+  server_name             _;
+  root                    /usr/share/nginx/html;
+  location / {
+    proxy_set_header X-Real-IP \$remote_addr;
+    proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    proxy_set_header Host google.com;
+    proxy_pass http://node;
+    proxy_redirect off;
+    port_in_redirect off;
+  }
+}
+</code></pre>
+<p>Running <code>preview</code> now shows that this change will cause us to replace the <code>ConfigMap</code> with a new one
+containing the new data, and subsequently trigger a rollout in the <code>Deployment</code>.</p>
+<blockquote>
+<p>NOTE: This rollout is safe! Pulumi executes this plan with the following steps:</p>
+<ol>
+<li>Create a new <code>ConfigMap</code> with a new name and the new data.</li>
+<li>Update the <code>PodTemplate</code> of the <code>Deployment</code> to point at the new <code>ConfigMap</code>. This update
+triggers the <code>Deployment</code> controller to try to roll out a new set of containers with mounts
+that contain this new data.</li>
+<li>Only once that succeeds, delete the old <code>ConfigMap</code>.</li>
+</ol>
+</blockquote>
+<pre class="language-sh"><code class="language-sh">Previewing update of stack 'configmap-rollout-dev'
+     Type                           Name                                     Status        Info
+ *   pulumi:pulumi:Stack            configmap-rollout-configmap-rollout-dev  no change
+ +-  ├─ kubernetes:core:ConfigMap   nginx                                    replace       changes: ~ data,metadata
+ ~   └─ kubernetes:apps:Deployment  nginx                                    update        changes: ~ spec
+
+info: 2 changes previewed:
+    ~ 1 resource to update
+    +-1 resource to replace
+      2 resources unchanged
+</code></pre>
+<p>Running <code>pulumi up</code> should similarly look something like this:</p>
+<pre class="language-sh"><code class="language-sh">Updating stack 'configmap-rollout-dev'
+     Type                           Name                                     Status       Info
+ *   pulumi:pulumi:Stack            configmap-rollout-configmap-rollout-dev  done
+ +-  ├─ kubernetes:core:ConfigMap   nginx                                    replaced     changes: ~ data,metadata
+ ~   └─ kubernetes:apps:Deployment  nginx                                    updated      changes: ~ spec
+
+---outputs:---
+frontendIp: "35.193.210.254"
+
+info: 2 changes performed:
+    ~ 1 resource updated
+    +-1 resource replaced
+      2 resources unchanged
+Update duration: 5.679919856s
+
+Permalink: https://app.pulumi.com/hausdorff/configmap-rollout-dev/updates/13
+</code></pre>
+<p>Now, if we <code>curl</code> the IP address once more, we see that it points at google.com!</p>
+<blockquote>
+<p><em>Note</em>: minikube does not support type <code>LoadBalancer</code>; if you are deploying to minikube, make sure
+to run <code>kubectl port-forward svc/frontend 8080:80</code> to forward the cluster port to the local
+machine and access the service via <code>localhost:8080</code>.</p>
+</blockquote>
+<pre class="language-sh"><code class="language-sh">$ curl -sL $(pulumi stack output frontendIp) | grep -o "&#x3C;title>Google&#x3C;/title>"
+&#x3C;title>Google&#x3C;/title>
+</code></pre>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/default.conf">default.conf</a></li>
+<li><a href="/assets/index.ts">index.ts</a></li>
+<li><a href="/assets/package.json">package.json</a></li>
+<li><a href="/assets/tsconfig.json">tsconfig.json</a></li>
+</ul>
+<hr>
+<h2 id="children"><a aria-hidden="true" class="anchor-heading" href="#children"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Children</h2>
+<ol>
+<li><a href="https://pulumi.dendron.so/notes/kubernetes-ts-configmap-rollout.images.html">Images</a></li>
+</ol><span id="navId" data="kubernetes-ts-configmap-rollout"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/kubernetes-ts-configmap-rollout/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

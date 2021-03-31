@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Aws Ts Apigateway Auth0 - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/aws-ts-apigateway-auth0.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/aws-ts-apigateway-auth0.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/aws-ts-apigateway-auth0.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Aws Ts Apigateway Auth0 - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Aws Ts Apigateway Auth0 - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Aws Ts Apigateway Auth0</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Aws Ts Apigateway Auth0">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <p><a href="https://app.pulumi.com/new"><img src="https://get.pulumi.com/new/button.svg" alt="Deploy"></a></p>
+<h1 id="secure-serverless-rest-api-using-auth0"><a aria-hidden="true" class="anchor-heading" href="#secure-serverless-rest-api-using-auth0"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Secure Serverless REST API Using Auth0</h1>
+<p>A simple REST API that is protected by a custom AWS Lambda Authorizer. The Authorizer uses <a href="https://auth0.com/">Auth0</a> to authorize requests.</p>
+<p>This example is similar to Auth0's tutorial: <a href="https://auth0.com/docs/integrations/aws-api-gateway/custom-authorizers">Secure AWS API Gateway Endpoints Using Custom Authorizers</a>, but uses Pulumi to create the Serverless app and Custom Authorizer.</p>
+<h2 id="set-up-auth0"><a aria-hidden="true" class="anchor-heading" href="#set-up-auth0"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Set Up Auth0</h2>
+<p>You can follow the steps below or alternatively you can follow <a href="https://auth0.com/docs/integrations/aws-api-gateway/custom-authorizers/part-1">Auth0's Part 1: Create an Auth0 API</a>.</p>
+<ol>
+<li>
+<p><a href="https://auth0.com/signup">Sign up</a> for an Auth0 account or login if you already have one.</p>
+</li>
+<li>
+<p>Click on <code>APIs</code> in the left-hand menu.</p>
+</li>
+<li>
+<p>Click <code>Create API</code>.</p>
+<ul>
+<li>Enter a name and Identifier for you New API.</li>
+<li>Select RS256 as the Signing Algorithm.</li>
+<li>Click <code>Create</code>.</li>
+</ul>
+</li>
+<li>
+<p>Under the <code>Quick Start</code> tab, the Node.js example will show you the values for <code>jwksUri</code>, <code>audience</code> and <code>issuer</code> you will need in the next section.</p>
+</li>
+</ol>
+<h2 id="deploying-and-running-the-program"><a aria-hidden="true" class="anchor-heading" href="#deploying-and-running-the-program"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Deploying and Running the Program</h2>
+<ol>
+<li>
+<p>Create a new stack:</p>
+<pre class="language-bash"><code class="language-bash">pulumi stack init auth0-api-testing
+</code></pre>
+</li>
+<li>
+<p>Set the AWS region:</p>
+<pre class="language-bash"><code class="language-bash">pulumi config <span class="token builtin class-name">set</span> aws:region us-east-2
+</code></pre>
+</li>
+<li>
+<p>Set up the Auth0 configuration values as secrets in Pulumi:</p>
+<p>Run the following commands after replacing <code>&#x3C;jwksUri></code>, <code>&#x3C;audience></code> and <code>&#x3C;issuer></code> with the appropriate values.</p>
+<pre class="language-bash"><code class="language-bash">pulumi config <span class="token builtin class-name">set</span> --secret jwksUri <span class="token operator">&#x3C;</span>jwksUri<span class="token operator">></span>
+pulumi config <span class="token builtin class-name">set</span> --secret audience <span class="token operator">&#x3C;</span>audience<span class="token operator">></span>
+pulumi config <span class="token builtin class-name">set</span> --secret issuer <span class="token operator">&#x3C;</span>issuer<span class="token operator">></span>
+</code></pre>
+</li>
+<li>
+<p>Restore NPM modules via <code>npm install</code> or <code>yarn install</code>.</p>
+</li>
+<li>
+<p>Run <code>pulumi up</code> to preview and deploy changes:</p>
+</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ pulumi up
+Previewing update <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+
+<span class="token punctuation">..</span>.
+
+Updating <span class="token punctuation">(</span>dev<span class="token punctuation">)</span>:
+
+     Type                                Name                                         Status      Info
+ +   pulumi:pulumi:Stack                 lambda-authorizer-dev                        created     <span class="token number">1</span> message
+ +   ├─ aws:apigateway:x:API             myapi                                        created
+ +   │  ├─ aws:iam:Role                  myapi70a45a97                                created
+ +   │  ├─ aws:iam:RolePolicyAttachment  myapi70a45a97-32be53a2                       created
+ +   │  ├─ aws:lambda:Function           myapi70a45a97                                created
+ +   │  ├─ aws:apigateway:RestApi        myapi                                        created
+ +   │  ├─ aws:apigateway:Deployment     myapi                                        created
+ +   │  ├─ aws:lambda:Permission         myapi-31a4e902                               created
+ +   │  └─ aws:apigateway:Stage          myapi                                        created
+ +   ├─ aws:iam:Role                     jwt-rsa-custom-authorizer                    created
+ +   ├─ aws:iam:Role                     jwt-rsa-custom-authorizer-authorizer-role    created
+ +   ├─ aws:iam:RolePolicyAttachment     jwt-rsa-custom-authorizer-32be53a2           created
+ +   ├─ aws:lambda:Function              jwt-rsa-custom-authorizer                    created
+ +   └─ aws:iam:RolePolicy               jwt-rsa-custom-authorizer-invocation-policy  created
+
+Outputs:
+    url: <span class="token string">"https://***.execute-api.us-east-2.amazonaws.com/stage/"</span>
+
+Resources:
+    + <span class="token number">14</span> created
+
+Duration: 18s
+</code></pre>
+<h2 id="testing-our-api"><a aria-hidden="true" class="anchor-heading" href="#testing-our-api"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Testing Our API</h2>
+<p>We can now use cURL to test out our new endpoint. If we cURL without a token, we should get a 401 Unauthorized response.</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> <span class="token variable"><span class="token variable">$(</span>pulumi stack output url<span class="token variable">)</span></span>hello
+<span class="token punctuation">{</span><span class="token string">"message"</span><span class="token builtin class-name">:</span><span class="token string">"Unauthorized"</span><span class="token punctuation">}</span>
+</code></pre>
+<p>We can curl our endpoint with an invalid token and should once again get a 401 Unauthorized response.</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> <span class="token variable"><span class="token variable">$(</span>pulumi stack output url<span class="token variable">)</span></span>hello -H <span class="token string">"Authorization: Bearer invalid"</span>
+<span class="token punctuation">{</span><span class="token string">"message"</span><span class="token builtin class-name">:</span><span class="token string">"Unauthorized"</span><span class="token punctuation">}</span>
+</code></pre>
+<p>Finally, we expect a 200 response when we obtain a token from Auth0 and use it to call our API. We can get a token by visiting the API Details page for our API and clicking the Test tab. Using the provided access token and the API a 200 response: Hello world!</p>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> <span class="token variable"><span class="token variable">$(</span>pulumi stack output url<span class="token variable">)</span></span>hello -H <span class="token string">"Authorization: Bearer &#x3C;VALID_TOKEN>"</span>
+<span class="token operator">&#x3C;</span>h<span class="token operator"><span class="token file-descriptor important">1</span>></span>Hello world<span class="token operator">!</span><span class="token operator">&#x3C;</span>/h<span class="token operator"><span class="token file-descriptor important">1</span>></span>
+</code></pre>
+<h2 id="clean-up"><a aria-hidden="true" class="anchor-heading" href="#clean-up"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Clean up</h2>
+<ol>
+<li>
+<p>Run <code>pulumi destroy</code> to tear down all resources.</p>
+</li>
+<li>
+<p>To delete the stack itself, run <code>pulumi stack rm</code>. Note that this command deletes all deployment history from the Pulumi Console.</p>
+</li>
+</ol>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/index.ts">index.ts</a></li>
+<li><a href="/assets/package.json">package.json</a></li>
+<li><a href="/assets/tsconfig.json">tsconfig.json</a></li>
+</ul><span id="navId" data="aws-ts-apigateway-auth0"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/aws-ts-apigateway-auth0/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>

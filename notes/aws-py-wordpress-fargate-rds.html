@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  
+  <title>Aws Py WordPress Fargate Rds - Dendron - Pulumi</title>
+  
+
+  <link
+    rel="shortcut icon"
+    href="https://pulumi.dendron.so/favicon.ico"
+    type="image/x-icon"
+  />
+  <link
+    rel="stylesheet"
+    href="https://pulumi.dendron.so/assets/css/just-the-docs-default.css"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/just-the-docs.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/themes/prism.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+    integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X"
+    crossorigin="anonymous"
+  />
+  <script
+    type="text/javascript"
+    src="https://pulumi.dendron.so/assets/js/vendor/lunr.min.js"
+  ></script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   
+  
+<meta name="description" content="Dendron Vault for Pulumi Examples">
+<meta name="author" content="">
+
+<link rel="canonical" href="https://pulumi.dendron.so/notes/aws-py-wordpress-fargate-rds.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pulumi.dendron.so/notes/aws-py-wordpress-fargate-rds.html">
+<meta property="og:description" content="Dendron Vault for Pulumi Examples">
+<meta property="og:image" content="https://pulumi.dendron.soundefined">
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:url" content="https://pulumi.dendron.so/notes/aws-py-wordpress-fargate-rds.html">
+<meta name="twitter:description" content="Dendron Vault for Pulumi Examples">
+<meta name="twitter:image" content="https://pulumi.dendron.soundefined">
+
+
+  <meta property="og:title" content="Aws Py WordPress Fargate Rds - Dendron - Pulumi" />
+  <meta name="twitter:title" content="Aws Py WordPress Fargate Rds - Dendron - Pulumi" />
+  
+</head>
+
+
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="svg-link" viewBox="0 0 24 24">
+        <title>Link</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </symbol>
+      <symbol id="svg-search" viewBox="0 0 24 24">
+        <title>Search</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-menu" viewBox="0 0 24 24">
+        <title>Menu</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+          <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </symbol>
+      <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+        <title>Expand</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </symbol>
+      <symbol id="svg-doc" viewBox="0 0 24 24">
+        <title>Document</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+          <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+        </svg>
+      </symbol>
+    </svg>
+
+    <div class="side-bar">
+      <div class="site-header">
+        <a href="https://pulumi.dendron.so" class="site-title lh-tight">
+  Dendron - Pulumi
+
+ </a>
+        <a href="#" id="menu-button" class="site-button">
+          <svg viewBox="0 0 24 24" class="icon"><use xlink:href="#svg-menu"></use></svg>
+        </a>
+      </div>
+
+      <nav role="navigation" aria-label="Main" id="site-nav" class="site-nav">
+      </nav>
+      <footer class="site-footer">
+        🌱 with 💕 using <a href="https://www.dendron.so/"> Dendron 🌲 </a>
+      </footer>
+    </div>
+    <div class="main" id="top">
+        <div id="main-header" class="main-header">
+          
+            <div class="search">
+              <div class="search-input-wrap">
+                <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search Dendron - Pulumi" aria-label="Search Dendron - Pulumi" autocomplete="off">
+                <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+              </div>
+              <div id="search-results" class="search-results"></div>
+            </div>
+          
+          
+    </div>
+    <div id="main-content-wrap" class="main-content-wrap">
+      
+        
+          <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+            <ol class="breadcrumb-nav-list"><li class="breadcrumb-nav-list-item"><a href="https://pulumi.dendron.so">Root</a></li><li class="breadcrumb-nav-list-item">Aws Py WordPress Fargate Rds</li></ol>
+          </nav>
+        
+      
+      <div id="main-content" class="main-content" role="main">
+
+        
+        
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        
+        <div class="alert alert-primary" role="alert">
+          This page was generated from content adapted from the following <a href="#" data-html="true" data-toggle="popover" title="Attributions">sources</a>
+          </a>
+        </div>
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({content: `
+              <ul>
+              
+              <li> <a href="https://github.com/pulumi/examples" target="_blank"> pulumi examples  </li>
+              
+              </ul>
+            `})
+          })
+        </script>
+        
+
+        <script>
+          $(function () {
+            $('[data-toggle="popover"]').popover({html: true})
+          })
+        </script>
+
+        
+
+<div id="main" role="main">
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Aws Py WordPress Fargate Rds">
+    
+    <meta itemprop="datePublished" content="2021-03-31T15:19:59+00:00">
+    <meta itemprop="dateModified" content="2021-03-31T15:19:59+00:00">
+
+    <div class="page__inner-wrap">
+
+      
+
+      <section class="page__content" itemprop="text">
+
+        
+
+        <h1 id="wordpress-site-in-aws-fargate-with-rds-db-backend"><a aria-hidden="true" class="anchor-heading" href="#wordpress-site-in-aws-fargate-with-rds-db-backend"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>WordPress Site in AWS Fargate with RDS DB Backend</h1>
+<p>This example serves a WordPress site in AWS ECS Fargate using an RDS MySQL Backend.</p>
+<p>It leverages the following Pulumi concepts/constructs:</p>
+<ul>
+<li><a href="https://www.pulumi.com/docs/intro/concepts/programming-model/#components">Component Resources</a>: Allows one to create custom resources that encapsulate one's best practices. In this example, component resource is used to define a "VPC" custom resource, a "Backend" custom resource that sets up the RDS DB, and a "Frontend" resource that sets up the ECS cluster and load balancer and tasks.</li>
+<li><a href="https://www.pulumi.com/docs/reference/pkg/">Other Providers</a>: Beyond the providers for the various clouds and Kubernetes, etc, Pulumi allows one to create and manage non-cloud resources. In this case, the program uses the Random provider to create a random password if necessary.</li>
+</ul>
+<p>This sample uses the following AWS products (and related Pulumi providers):</p>
+<ul>
+<li><a href="https://aws.amazon.com/vpc">Amazon VPC</a>: Used to set up a new virtual network in which the system is deployed.</li>
+<li><a href="https://aws.amazon.com/rds">Amazon RDS</a>: A managed DB service used to provide the MySQL backend for WordPress.</li>
+<li><a href="https://aws.amazon.com/fargate">Amazon ECS Fargate</a>: A container service used to run the WordPress frontend.</li>
+</ul>
+<h2 id="getting-started"><a aria-hidden="true" class="anchor-heading" href="#getting-started"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Getting Started</h2>
+<p>There are no required configuration parameters for this project since the code will use defaults or generate values as needed - see the beginning of <code>__main__.py</code> to see the defaults.
+However, you can override these defaults by using <code>pulumi config</code> to set the following values (e.g. <code>pulumi config set service_name my-wp-demo</code>).</p>
+<ul>
+<li><code>service_name</code> - This is used as a prefix for resources created by the Pulumi program.</li>
+<li><code>db_name</code> - The name of the MySQL DB created in RDS.</li>
+<li><code>db_user</code> - The user created with access to the MySQL DB.</li>
+<li><code>db_password</code> - The password for the DB user. Be sure to use <code>--secret</code> if creating this config value (e.g. <code>pulumi config set db_password --secret</code>).</li>
+</ul>
+<h2 id="deploying-and-running-the-program"><a aria-hidden="true" class="anchor-heading" href="#deploying-and-running-the-program"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Deploying and running the program</h2>
+<p>Note: some values in this example will be different from run to run.</p>
+<ol>
+<li>
+<p>Create a new stack:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi stack init lamp-test
+</code></pre>
+</li>
+<li>
+<p>Set the AWS region:</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi config <span class="token builtin class-name">set</span> aws:region us-west-2
+</code></pre>
+</li>
+<li>
+<p>Run <code>pulumi up</code> to preview and deploy changes. After the preview is shown you will be
+prompted if you want to continue or not. Note: If you set the <code>db_password</code> in the configuration as described above, you will not see the <code>RandomPassword</code> resource below.</p>
+<pre class="language-bash"><code class="language-bash">$ pulumi up
+ +   pulumi:pulumi:Stack                  lamp-rds-wordpress-testing        create
+ +   ├─ custom:resource:VPC               wp-example-net                    create
+ +   │  ├─ aws:ec2:Vpc                    wp-example-net-vpc                create
+ +   pulumi:pulumi:Stack                  lamp-rds-wordpress-testing        create.
+ +   pulumi:pulumi:Stack                  lamp-rds-wordpress-testing        create
+ +   │  ├─ aws:ec2:Subnet                 wp-example-net-subnet-us-west-2a  create
+ +   │  ├─ aws:ec2:Subnet                 wp-example-net-subnet-us-west-2b  create
+ +   │  ├─ aws:ec2:SecurityGroup          wp-example-net-rds-sg             create
+ +   │  ├─ aws:ec2:SecurityGroup          wp-example-net-fe-sg              create
+ +   │  ├─ aws:ec2:RouteTableAssociation  vpc-route-table-assoc-us-west-2a  create
+ +   │  └─ aws:ec2:RouteTableAssociation  vpc-route-table-assoc-us-west-2b  create
+ +   ├─ random:index:RandomPassword       db_password                       create
+ +   ├─ custom:resource:Backend           wp-example-be                     create
+ +   │  ├─ aws:rds:SubnetGroup            wp-example-be-sng                 create
+ +   │  └─ aws:rds:Instance               wp-example-be-rds                 create
+ +   └─ custom:resource:Frontend          wp-example-fe                     create
+ +      ├─ aws:ecs:Cluster                wp-example-fe-ecs                 create
+ +      ├─ aws:iam:Role                   wp-example-fe-task-role           create
+ +      ├─ aws:lb:TargetGroup             wp-example-fe-app-tg              create
+ +      ├─ aws:iam:RolePolicyAttachment   wp-example-fe-task-policy         create
+ +      ├─ aws:lb:LoadBalancer            wp-example-fe-alb                 create
+ +      ├─ aws:lb:Listener                wp-example-fe-listener            create
+ +      └─ aws:ecs:Service                wp-example-fe-app-svc             create
+
+</code></pre>
+</li>
+<li>
+<p>The program outputs the following values:</p>
+</li>
+</ol>
+<ul>
+<li><code>DB Endpoint</code>: This is the RDS DB endpoint. By default, the DB is deployed to disallow public access. This can be overriden in the resource declaration for the backend.</li>
+<li><code>DB Password</code>: This is managed as a secret. To see the value, you can use <code>pulumi stack output --show-secrets</code></li>
+<li><code>DB User Name</code>: The user name for access the DB.</li>
+<li><code>ECS Cluster Name</code>: The name of the ECS cluster created by the stack.</li>
+<li><code>Web Service URL</code>: This is a link to the load balancer fronting the WordPress container. Note: It may take a few minutes for AWS to complete deploying the service and so you may see a 503 error initially.</li>
+</ul>
+<ol>
+<li>To clean up resources, run <code>pulumi destroy</code> and answer the confirmation question at the prompt.</li>
+</ol>
+<h2 id="troubleshooting"><a aria-hidden="true" class="anchor-heading" href="#troubleshooting"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Troubleshooting</h2>
+<h3 id="503-error-for-the-web-service"><a aria-hidden="true" class="anchor-heading" href="#503-error-for-the-web-service"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>503 Error for the Web Service</h3>
+<p>AWS can take a few minutes to complete deploying the WordPress container and connect the load balancer to the service. So you may see a 503 error for a few minutes right after launching the stack. You can see the status of the service by looking at the cluster in AWS.</p>
+<h2 id="deployment-speed"><a aria-hidden="true" class="anchor-heading" href="#deployment-speed"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Deployment Speed</h2>
+<p>Since the stack creates an RDS instance, ECS cluster, load balancer, ECS service, as well as other elements, the stack can take about 4-5 minutes to launch and become ready.</p>
+<hr>
+<h2 id="imported-assets"><a aria-hidden="true" class="anchor-heading" href="#imported-assets"><svg aria-hidden="true" viewBox="0 0 16 16"><use xlink:href="#svg-link"></use></svg></a>Imported Assets</h2>
+<ul>
+<li><a href="/assets/pulumi.yaml">Pulumi.yaml</a></li>
+<li><a href="/assets/__main__.py"><strong>main</strong>.py</a></li>
+<li><a href="/assets/backend.py">backend.py</a></li>
+<li><a href="/assets/frontend.py">frontend.py</a></li>
+<li><a href="/assets/network.py">network.py</a></li>
+<li><a href="/assets/requirements.txt">requirements.txt</a></li>
+</ul><span id="navId" data="aws-py-wordpress-fargate-rds"></span>
+
+                
+      </section>
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+
+        
+          <hr>
+          <footer>
+            
+            
+
+            
+                
+                  <p class="text-small text-grey-dk-000 mb-0">
+                    <a href="https://github.com/pulumi/examples/edit/master/aws-py-wordpress-fargate-rds/README.md" id="edit-this-page">Edit this page on GitHub</a>
+                  </p>
+                
+              </div>
+          </footer>
+        
+    </div>
+</div>
+
+
+  
+
+  <div class="search-overlay"></div>
+
+</div>
+</body>
+</html>
