@@ -1,0 +1,84 @@
+---
+id: azure-cs-aci
+title: Azure Cs Aci
+desc: ''
+updated: 1617203999369
+created: 1617203999369
+isDir: false
+gitNotePath: '{{ noteHiearchy }}/README.md'
+sources:
+  - name: pulumi examples
+    url: 'https://github.com/pulumi/examples'
+    license: Apache License 2.0
+---
+[![Deploy](https://get.pulumi.com/new/button.svg)](https://app.pulumi.com/new)
+
+# Azure Container Instances on Linux
+
+Starting point for building web application hosted in Azure Container Instances.
+
+## Running the App
+
+1. Create a new stack:
+
+   ```
+   $ pulumi stack init dev
+   ```
+
+2. Login to Azure CLI (you will be prompted to do this during deployment if you forget this step):
+
+   ```
+   $ az login
+   ```
+
+3. Set the Azure region location to use:
+
+   ```
+   $ pulumi config set azure-native:location westus2
+   ```
+
+4. Run `pulumi up` to preview and deploy changes:
+
+   ```
+   $ pulumi up
+   Previewing changes:
+   ...
+
+   Performing changes:
+
+       Type                                              Name              Status     
+   +   pulumi:pulumi:Stack                               azure-cs-aci-dev  created
+   +   ├─ azure-native:resources:ResourceGroup           aci-rg            created      
+   +   └─ azure-native:containerinstance:ContainerGroup  helloworld        created
+
+   Outputs:
+       containerIPv4Address: "20.56.239.40"
+
+   Resources:
+       + 3 created
+
+   Duration: 1m18s
+   ```
+
+5. Check the deployed endpoints:
+
+   ```
+   $ pulumi stack output containerIPv4Address
+   13.83.66.37
+   $ curl "$(pulumi stack output containerIPv4Address)"
+   <html>
+   <head>
+       <title>Welcome to Azure Container Instances!</title>
+   </head>
+   ...
+   ```
+
+* * *
+
+## Imported Assets
+
+- [Azure.Aci.csproj](/assets/azure.csproj)
+- [MyStack.cs](/assets/mystack.cs)
+- [Program.cs](/assets/program.cs)
+- [Pulumi.yaml](/assets/pulumi.yaml)
+
