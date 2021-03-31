@@ -21,12 +21,12 @@ vaultName: vault
 # destName: TODO
 
 fnameAsId: true
-addUUIDToAssets: false
-indexNote: readme.md
+noAddUUID: true
+indexName: readme
 
 frontmatter:
-  gitNotePath: 'pages/{{ noteHiearchy }}.md'
+  gitNotePath: '{{ noteHiearchy }}/README.md'
   sources:
-    - name: 'tldr-pages'
-      url: 'https://github.com/tldr-pages/tldr/blob/master/LICENSE.md'
-      license: Creative Commons
+    - name: 'pulumi examples'
+      url: 'https://github.com/pulumi/examples'
+      license: Apache License 2.0

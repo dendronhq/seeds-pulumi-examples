@@ -2,7 +2,7 @@ version: 1
 vaults:
     -
         fsPath: vault
-useFMTitle: true
+useFMTitle: false
 useNoteTitleForLink: true
 noLegacyNoteRef: true
 site:
@@ -10,9 +10,11 @@ site:
     siteHierarchies:
         - root
     siteRootDir: docs
+    siteIndex: root
     usePrettyRefs: true
-    title: Dendron
-    description: Personal knowledge space
+    title: Dendron - Pulumi
+    description: Dendron Vault for Pulumi Examples
+    gh_edit_repository: 'https://github.com/pulumi/examples'
     duplicateNoteBehavior:
         action: useVault
         payload:
