@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "dendron-cli": "dendron-cli"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LukeCarrier/brain.git"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@dendronhq/dendron-cli": "^0.35.3-alpha.0"
+  }
+}

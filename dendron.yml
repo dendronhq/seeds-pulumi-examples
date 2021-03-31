@@ -12,6 +12,7 @@ site:
     siteRootDir: docs
     siteIndex: root
     usePrettyRefs: true
+    githubCname: pulumi.dendron.so
     title: Dendron - Pulumi
     description: Dendron Vault for Pulumi Examples
     gh_edit_repository: 'https://github.com/pulumi/examples'
